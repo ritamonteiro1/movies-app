@@ -17,5 +17,10 @@
     <string name="item_gender">Gênero</string>
 <!--    Generics Error-->
     <string name="fill_the_field">Preencha o campo</string>
-    <string name="incorrect_email">Preencha em um formato válido. Exemplo: nome@nome.com.br</string>
+    <string name="occurred_error">Ocorreu um erro. Tente novamente</string>
+    <!--    LoginActivity-->
+    <string name="login_incorrect_email">Preencha em um formato válido. Exemplo: nome@nome.com.br</string>
+    <string name="login_error_email_password">Credenciais inválida. Tente novamente</string>
+<!--    Alert Dialog Messages-->
+    <string name="alert_dialog_text">OK</string>
 </resources>

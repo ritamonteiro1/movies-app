@@ -13,3 +13,12 @@ fun Context.createLoadingDialog(): Dialog {
     dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
     return dialog
 }
+
+fun Context.showErrorDialog(message: String) {
+    val builder = AlertDialog.Builder(this)
+    builder.setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton(this.getString(R.string.alert_dialog_text), null)
+    val alert = builder.create()
+    alert.show()
+}
