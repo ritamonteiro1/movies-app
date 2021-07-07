@@ -1,3 +1,10 @@
 <resources>
+<!--    AndroidManifest-->
     <string name="app_name">Tokenlab</string>
+<!--    activity_login.xml-->
+    <string name="login_welcome_text">Bem vindo</string>
+    <string name="login_content_description_image_logo">Logo da empresa</string>
+    <string name="login_email_text_hint">Email</string>
+    <string name="login_password_text_hint">Senha</string>
+    <string name="login_button_text">Entrar</string>
 </resources>
