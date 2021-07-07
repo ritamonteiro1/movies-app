@@ -6,7 +6,7 @@
     android:id="@+id/movieDetailsConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MovieDetailsActivity">
+    tools:context=".activity.MovieDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/movieDetailsToolBar"

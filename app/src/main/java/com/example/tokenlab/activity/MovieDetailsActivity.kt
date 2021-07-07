@@ -1,11 +1,12 @@
-package com.example.tokenlab
+package com.example.tokenlab.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.tokenlab.R
 
-class MainActivity : AppCompatActivity() {
+class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_movie_details)
     }
 }

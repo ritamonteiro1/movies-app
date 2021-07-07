@@ -1,10 +1,11 @@
-package com.example.tokenlab
+package com.example.tokenlab.activity
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.example.tokenlab.R
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
