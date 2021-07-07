@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
         setupToolBar()
     }
 
+    override fun onStart() {
+        super.onStart()
+        loadingDialog?.show()
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
