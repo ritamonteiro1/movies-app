@@ -23,6 +23,8 @@
     <string name="login_error_email_password">Credenciais inválida. Tente novamente</string>
     <!--    Alert Dialog Messages-->
     <string name="alert_dialog_text">OK</string>
-<!--    MainActivity-->
+    <!--    MainActivity-->
     <string name="main_tool_bar_title_text">Lista de filmes</string>
+<!--    MovieDetailsActivity-->
+    <string name="movie_details_tool_bar_title_text">Detalhes do filme</string>
 </resources>

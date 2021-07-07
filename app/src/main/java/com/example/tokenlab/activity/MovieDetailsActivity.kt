@@ -140,7 +140,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun setupToolBar() {
         setSupportActionBar(movieDetailsToolBar)
-        supportActionBar?.title = Constants.EMPTY
+        supportActionBar?.title = getString(R.string.movie_details_tool_bar_title_text)
     }
 
     private fun findViewsById() {
