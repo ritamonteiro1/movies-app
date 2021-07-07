@@ -8,7 +8,13 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
+import com.example.tokenlab.api.Api
+import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
+import com.example.tokenlab.domains.movie.MovieResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsToolBar: Toolbar? = null
@@ -26,9 +32,27 @@ class MovieDetailsActivity : AppCompatActivity() {
         findViewsById()
         setupToolBar()
         val clickedMovieId = retrieverClickedMovieId()
+        getClickedMovieDetailsFromApi(clickedMovieId)
     }
 
-    private fun retrieverClickedMovieId() = intent.getStringExtra(Constants.ID_MOVIE)
+    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
+        val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
+        val call: Call<MovieResponse> = dataService.recoverMovieDetails(clickedMovieId)
+        call.enqueue(object : Callback<MovieResponse> {
+            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun retrieverClickedMovieId(): Int {
+        return intent.getSerializableExtra(Constants.ID_MOVIE) as Int
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
