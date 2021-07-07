@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
+import com.example.tokenlab.constants.Constants
 
 class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsToolBar: Toolbar? = null
@@ -24,7 +25,10 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
         findViewsById()
         setupToolBar()
+        val clickedMovieId = retrieverClickedMovieId()
     }
+
+    private fun retrieverClickedMovieId() = intent.getStringExtra(Constants.ID_MOVIE)
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
