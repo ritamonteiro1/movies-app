@@ -40,7 +40,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/itemMovieNameTextView"
+                android:id="@+id/itemMovieTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -54,7 +54,7 @@
                 tools:text="Nome do filme" />
 
             <TextView
-                android:id="@+id/itemMovieTypeTextView"
+                android:id="@+id/itemMovieDateTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -64,11 +64,11 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
-                app:layout_constraintTop_toBottomOf="@+id/itemMovieNameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieTitleTextView"
                 tools:text="Data de estreia" />
 
             <TextView
-                android:id="@+id/itemMovieCountryTextView"
+                android:id="@+id/itemMovieVoteAverageTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -78,8 +78,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
-                app:layout_constraintTop_toBottomOf="@+id/itemMovieTypeTextView"
-                tools:text="Estrela" />
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieDateTextView"
+                tools:text="Nota" />
 
             <Button
                 android:id="@+id/itemMovieButton"
@@ -93,7 +93,7 @@
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
-                app:layout_constraintTop_toBottomOf="@+id/itemMovieCountryTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieVoteAverageTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
