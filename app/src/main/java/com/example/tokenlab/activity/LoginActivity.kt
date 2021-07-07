@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.example.tokenlab.R
+import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.EmailStatus
 import com.example.tokenlab.domains.User
 import com.example.tokenlab.extensions.createLoadingDialog
@@ -39,11 +40,25 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun treatInvalidUserPassword(validUserPassword: Boolean) {
-        TODO("Not yet implemented")
+        if (validUserPassword) {
+            loginPasswordTextInputLayout?.error = Constants.EMPTY
+        } else {
+            loginPasswordTextInputLayout?.error = getString(R.string.fill_the_field)
+        }
     }
 
     private fun treatInvalidUserEmail(validUserEmail: EmailStatus) {
-        TODO("Not yet implemented")
+        when (validUserEmail) {
+            EmailStatus.VALID -> {
+                loginEmailTextInputLayout?.error = Constants.EMPTY
+            }
+            EmailStatus.EMPTY -> {
+                loginEmailTextInputLayout?.error = getString(R.string.fill_the_field)
+            }
+            else -> {
+                loginEmailTextInputLayout?.error = getString(R.string.incorrect_email)
+            }
+        }
     }
 
     private fun createUser() = User(
