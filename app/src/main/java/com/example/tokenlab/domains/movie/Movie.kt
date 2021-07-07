@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Movie(
     val id: Int,
-    @SerializedName("voteAverage") val vote_average: Double,
+    @SerializedName("vote_average") val voteAverage: Double,
     val title: String,
-    @SerializedName("imageUrl") val poster_url: String,
+    @SerializedName("poster_url") val imageUrl: String,
     val genres: List<String>,
-    @SerializedName("releaseDate") val release_date: String
+    @SerializedName("release_date") val releaseDate: String
 )

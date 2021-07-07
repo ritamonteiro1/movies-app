@@ -1,5 +1,5 @@
 package com.example.tokenlab.click.listener
 
 interface OnMovieButtonClickListener {
-    fun onClick(movieId: String)
+    fun onClick(movieId: Int)
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
 import com.example.tokenlab.click.listener.OnMovieButtonClickListener
 import com.example.tokenlab.domains.movie.Movie
+import com.example.tokenlab.extensions.downloadImage
 
 class MovieListAdapter(
     private var movieList: List<Movie>,
@@ -30,7 +31,7 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
-        holder.bind(movieList.get(position), onMovieButtonClickListener)
+        holder.bind(movieList[position], onMovieButtonClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -39,14 +40,20 @@ class MovieListAdapter(
 
     inner class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val itemMovieImageView: ImageView = itemView.findViewById(R.id.itemMovieImageView)
-        private val itemMovieTitleTextView: TextView = itemView.findViewById(R.id.itemMovieTitleTextView)
-        private val itemMovieDateTextView: TextView = itemView.findViewById(R.id.itemMovieDateTextView)
-        private val itemMovieVoteAverageTextView: TextView = itemView.findViewById(R.id.itemMovieVoteAverageTextView)
+        private val itemMovieTitleTextView: TextView =
+            itemView.findViewById(R.id.itemMovieTitleTextView)
+        private val itemMovieDateTextView: TextView =
+            itemView.findViewById(R.id.itemMovieDateTextView)
+        private val itemMovieVoteAverageTextView: TextView =
+            itemView.findViewById(R.id.itemMovieVoteAverageTextView)
         private val itemMovieButton: Button = itemView.findViewById(R.id.itemMovieButton)
 
-        fun bind(get: Movie, onMovieButtonClickListener: OnMovieButtonClickListener) {
-
+        fun bind(movieList: Movie, onMovieButtonClickListener: OnMovieButtonClickListener) {
+            itemMovieImageView.downloadImage(movieList.imageUrl)
+            itemMovieTitleTextView.text = movieList.title
+            itemMovieDateTextView.text = movieList.releaseDate
+            itemMovieVoteAverageTextView.text = movieList.voteAverage.toString()
+            itemMovieButton.setOnClickListener { onMovieButtonClickListener.onClick(movieList.id) }
         }
-
     }
 }
