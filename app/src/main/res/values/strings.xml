@@ -13,4 +13,6 @@
 <!--    activity_movie_details.xml-->
     <string name="movie_details_content_description_movie_image">Imagem do filme selecionado</string>
     <string name="movie_details_release_date_movie_text">Data de lançamento:</string>
+<!--    item_gender.xml-->
+    <string name="item_gender.xml">Gênero</string>
 </resources>
