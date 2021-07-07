@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         findViewsById()
         loadingDialog = this.createLoadingDialog()
+        setupToolBar()
+    }
+
+    private fun setupToolBar() {
+        setSupportActionBar(mainToolBar)
+        supportActionBar?.title = getString(R.string.main_tool_bar_title_text)
     }
 
     private fun findViewsById() {

@@ -10,17 +10,19 @@
     <!--    item_movie.xml-->
     <string name="item_movie_content_description_movie_image">Imagem do filme</string>
     <string name="item_movie_button_text">Ver detalhes</string>
-<!--    activity_movie_details.xml-->
+    <!--    activity_movie_details.xml-->
     <string name="movie_details_content_description_movie_image">Imagem do filme selecionado</string>
     <string name="movie_details_release_date_movie_text">Data de lançamento:</string>
-<!--    item_gender.xml-->
+    <!--    item_gender.xml-->
     <string name="item_gender">Gênero</string>
-<!--    Generics Error-->
+    <!--    Generics Error-->
     <string name="fill_the_field">Preencha o campo</string>
     <string name="occurred_error">Ocorreu um erro. Tente novamente</string>
     <!--    LoginActivity-->
     <string name="login_incorrect_email">Preencha em um formato válido. Exemplo: nome@nome.com.br</string>
     <string name="login_error_email_password">Credenciais inválida. Tente novamente</string>
-<!--    Alert Dialog Messages-->
+    <!--    Alert Dialog Messages-->
     <string name="alert_dialog_text">OK</string>
+<!--    MainActivity-->
+    <string name="main_tool_bar_title_text">Lista de filmes</string>
 </resources>
