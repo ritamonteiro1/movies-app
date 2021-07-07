@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.example.tokenlab.R
+import com.example.tokenlab.extensions.createLoadingDialog
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         findViewsById()
+        loadingDialog = this.createLoadingDialog()
     }
 
     private fun findViewsById() {
