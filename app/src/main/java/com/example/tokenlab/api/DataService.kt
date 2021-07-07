@@ -5,12 +5,12 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-abstract class DataService {
+interface DataService {
     @GET("movies")
-    abstract fun recoverMovieList(): Call<MovieResponse>
+    fun recoverMovieList(): Call<List<MovieResponse>>
 
     @GET("movies/{id}")
-    abstract fun recoverMovieDetails(
+    fun recoverMovieDetails(
         @Path("id") id: Int
     ): Call<MovieResponse>
 }

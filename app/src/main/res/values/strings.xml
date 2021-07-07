@@ -18,6 +18,7 @@
     <!--    Generics Error-->
     <string name="fill_the_field">Preencha o campo</string>
     <string name="occurred_error">Ocorreu um erro. Tente novamente</string>
+    <string name="error_connection_fail">Falha na conexão. Tente novamente</string>
     <!--    LoginActivity-->
     <string name="login_incorrect_email">Preencha em um formato válido. Exemplo: nome@nome.com.br</string>
     <string name="login_error_email_password">Credenciais inválida. Tente novamente</string>
