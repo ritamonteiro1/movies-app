@@ -1,12 +1,16 @@
 <resources>
-<!--    AndroidManifest-->
+    <!--    AndroidManifest-->
     <string name="app_name">Tokenlab</string>
-<!--    activity_login.xml-->
+    <!--    activity_login.xml-->
     <string name="login_welcome_text">Bem vindo</string>
     <string name="login_content_description_image_logo">Logo da empresa</string>
     <string name="login_email_text_hint">Email</string>
     <string name="login_password_text_hint">Senha</string>
     <string name="login_button_text">Entrar</string>
-<!--    item_movie.xml-->
+    <!--    item_movie.xml-->
     <string name="item_movie_content_description_movie_image">Imagem do filme</string>
+    <string name="item_movie_button_text">Ver detalhes</string>
+<!--    activity_movie_details.xml-->
+    <string name="movie_details_content_description_movie_image">Imagem do filme selecionado</string>
+    <string name="movie_details_release_date_movie_text">Data de lançamento:</string>
 </resources>
