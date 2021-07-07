@@ -22,6 +22,11 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         findViewsById()
+        setupToolBar()
+    }
+
+    private fun setupToolBar() {
+        setSupportActionBar(movieDetailsToolBar)
     }
 
     private fun findViewsById() {
