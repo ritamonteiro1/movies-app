@@ -8,8 +8,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
+import com.example.tokenlab.adapter.GenderListAdapter
 import com.example.tokenlab.api.Api
 import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
@@ -49,26 +51,33 @@ class MovieDetailsActivity : AppCompatActivity() {
         val call: Call<MovieResponse> = dataService.recoverMovieDetails(clickedMovieId)
         call.enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                loadingDialog?.dismiss()
-                if (response.isSuccessful && response.body() != null) {
-                    val movieResponse = response.body()
-                    val clickedMovie = getClickedMovie(movieResponse)
-                    val movieGenres: List<String> = movieResponse?.genres.orEmpty()
-                    showClickedMovieDetails(clickedMovie, movieGenres)
-                    setVisibilityVisibleViews()
-                } else {
-                    setVisibilityGoneViews()
-                    this@MovieDetailsActivity.showErrorDialog(getString(R.string.occurred_error))
-                }
+                getClickedMovieDetailsFromApiOnResponse(response)
             }
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                loadingDialog?.dismiss()
-                setVisibilityGoneViews()
-                this@MovieDetailsActivity.showErrorDialog(getString(R.string.error_connection_fail))
+                getClickedMovieDetailsFromApiOnFailure()
             }
-
         })
+    }
+
+    private fun getClickedMovieDetailsFromApiOnFailure() {
+        loadingDialog?.dismiss()
+        setVisibilityGoneViews()
+        this@MovieDetailsActivity.showErrorDialog(getString(R.string.error_connection_fail))
+    }
+
+    private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieResponse>) {
+        loadingDialog?.dismiss()
+        if (response.isSuccessful && response.body() != null) {
+            val movieResponse = response.body()
+            val clickedMovie = getClickedMovie(movieResponse)
+            val movieGenres: List<String> = movieResponse?.genres.orEmpty()
+            showClickedMovieDetails(clickedMovie, movieGenres)
+            setVisibilityVisibleViews()
+        } else {
+            setVisibilityGoneViews()
+            this@MovieDetailsActivity.showErrorDialog(getString(R.string.occurred_error))
+        }
     }
 
     private fun setVisibilityVisibleViews() {
@@ -96,6 +105,16 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsVoteAverageTextView?.text = clickedMovie.voteAverage.toString()
         movieDetailsImageView?.downloadImage(clickedMovie.imageUrl)
         movieDetailsDateTextView?.text = clickedMovie.releaseDate
+        val genderListAdapter = GenderListAdapter(movieGenres)
+        setupAdapter(genderListAdapter)
+    }
+
+    private fun setupAdapter(genderListAdapter: GenderListAdapter) {
+        movieDetailsRecyclerView?.adapter = genderListAdapter
+        val layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
+        movieDetailsRecyclerView?.layoutManager = layoutManager
     }
 
     private fun getClickedMovie(movieResponse: MovieResponse?) =
