@@ -30,7 +30,7 @@
         android:contentDescription="@string/movie_details_content_description_movie_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsVoteAverageTextView"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -49,12 +49,29 @@
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsToolBar"
         tools:text="Título do filme" />
 
+    <TextView
+        android:id="@+id/movieDetailsVoteAverageTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:textColor="@color/grey_242"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitleTextView"
+        tools:text="Nota do filme">
+
+    </TextView>
+
     <LinearLayout
         android:id="@+id/movieDetailsDateLinearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="start"
         app:layout_constraintEnd_toEndOf="parent"
