@@ -1,4 +1,4 @@
-package com.example.tokenlab.domains
+package com.example.tokenlab.domains.user
 
 import com.example.tokenlab.extensions.isValidEmail
 

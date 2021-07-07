@@ -8,8 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.tokenlab.R
 import com.example.tokenlab.constants.Constants
-import com.example.tokenlab.domains.EmailStatus
-import com.example.tokenlab.domains.User
+import com.example.tokenlab.domains.user.EmailStatus
+import com.example.tokenlab.domains.user.User
 import com.example.tokenlab.extensions.createLoadingDialog
 import com.example.tokenlab.extensions.showErrorDialog
 import com.google.android.material.textfield.TextInputLayout
