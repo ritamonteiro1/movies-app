@@ -27,6 +27,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
+        android:visibility="gone"
         android:contentDescription="@string/movie_details_content_description_movie_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,7 @@
         android:textColor="@color/grey_242"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsToolBar"
@@ -59,6 +61,7 @@
         android:gravity="center"
         android:textColor="@color/grey_242"
         android:textSize="20sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitleTextView"
@@ -83,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/movie_details_release_date_movie_text"
+            android:visibility="gone"
             android:textColor="@color/grey_242"
             android:textSize="16sp" />
 
@@ -92,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:textColor="@color/grey_242"
+            android:visibility="gone"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="10/10/2020">
@@ -109,10 +114,11 @@
         android:layout_marginEnd="10dp"
         android:textColor="@color/grey_242"
         android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsDateLinearLayout"
-        tools:text="Gênero:" />
+        android:text="@string/movie_details_release_gender_text"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movieDetailsRecyclerView"
@@ -122,6 +128,7 @@
         android:layout_marginTop="6dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="6dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
