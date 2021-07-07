@@ -7,4 +7,6 @@
     <string name="login_email_text_hint">Email</string>
     <string name="login_password_text_hint">Senha</string>
     <string name="login_button_text">Entrar</string>
+<!--    activity_main.xml-->
+
 </resources>
