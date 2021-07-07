@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
+import com.example.tokenlab.extensions.createLoadingDialog
 
 class MainActivity : AppCompatActivity() {
     private var mainToolBar: Toolbar? = null
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewsById()
+        loadingDialog = this.createLoadingDialog()
     }
 
     private fun findViewsById() {
