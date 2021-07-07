@@ -3,6 +3,7 @@ package com.example.tokenlab.activity
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
@@ -19,6 +20,14 @@ class MainActivity : AppCompatActivity() {
         findViewsById()
         loadingDialog = this.createLoadingDialog()
         setupToolBar()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupToolBar() {
