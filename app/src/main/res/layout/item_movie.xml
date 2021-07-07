@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_dd4">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemMovieCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/itemMovieConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/itemMovieImageView"
+                android:layout_width="104dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/item_movie_content_description_movie_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/itemMovieNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="14dp"
+                android:textColor="@color/grey_242"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nome do filme" />
+
+            <TextView
+                android:id="@+id/itemMovieTypeTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="14dp"
+                android:textColor="@color/grey_242"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieNameTextView"
+                tools:text="Data de estreia" />
+
+            <TextView
+                android:id="@+id/itemEnterpriseCountryTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="14dp"
+                android:textColor="@color/grey_242"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieTypeTextView"
+                tools:text="Estrela" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

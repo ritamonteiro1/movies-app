@@ -7,6 +7,6 @@
     <string name="login_email_text_hint">Email</string>
     <string name="login_password_text_hint">Senha</string>
     <string name="login_button_text">Entrar</string>
-<!--    activity_main.xml-->
-
+<!--    item_movie.xml-->
+    <string name="item_movie_content_description_movie_image">Imagem do filme</string>
 </resources>
