@@ -1,5 +1,6 @@
 package com.example.tokenlab.activity
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import com.example.tokenlab.api.Api
 import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.MovieResponse
+import com.example.tokenlab.extensions.createLoadingDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,11 +27,13 @@ class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsDateTextView: TextView? = null
     private var movieDetailsGenresTextView: TextView? = null
     private var movieDetailsRecyclerView: RecyclerView? = null
+    private var loadingDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
         findViewsById()
+        loadingDialog = this.createLoadingDialog()
         setupToolBar()
         val clickedMovieId = retrieverClickedMovieId()
         getClickedMovieDetailsFromApi(clickedMovieId)
