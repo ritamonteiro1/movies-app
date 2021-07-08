@@ -3,9 +3,9 @@ package com.example.tokenlab.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
+import com.google.android.material.chip.Chip
 
 class GenderListAdapter(private var genderList: List<String>) :
     RecyclerView.Adapter<GenderListAdapter.GenderListViewHolder>() {
@@ -32,10 +32,10 @@ class GenderListAdapter(private var genderList: List<String>) :
     }
 
     inner class GenderListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var itemGenderTextView: TextView = itemView.findViewById(R.id.itemGenderTextView)
+        private var itemGenderChip: Chip = itemView.findViewById(R.id.itemGenderChip)
 
         fun bind(genderList: String) {
-            itemGenderTextView.text = genderList
+            itemGenderChip.text = genderList
         }
     }
 }
