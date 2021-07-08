@@ -17,6 +17,7 @@ import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.Movie
 import com.example.tokenlab.domains.movie.MovieResponse
+import com.example.tokenlab.domains.movie.details.details.MovieDetailsResponse
 import com.example.tokenlab.extensions.convertToValidDateFormat
 import com.example.tokenlab.extensions.createLoadingDialog
 import com.example.tokenlab.extensions.downloadImage
@@ -45,18 +46,18 @@ class MovieDetailsActivity : AppCompatActivity() {
         loadingDialog?.show()
         setupToolBar()
         val clickedMovieId = retrieverClickedMovieId()
-       // getClickedMovieDetailsFromApi(clickedMovieId)
+      //  getClickedMovieDetailsFromApi(clickedMovieId)
     }
 
 //    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
 //        val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
-//        val call: Call<MovieResponse> = dataService.recoverMovieDetails(clickedMovieId)
-//        call.enqueue(object : Callback<MovieResponse> {
-//            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
+//        val call: Call<MovieDetailsResponse> = dataService.recoverMovieDetails(clickedMovieId)
+//        call.enqueue(object : Callback<MovieDetailsResponse> {
+//            override fun onResponse(call: Call<MovieDetailsResponse>, response: Response<MovieDetailsResponse>) {
 //                getClickedMovieDetailsFromApiOnResponse(response)
 //            }
 //
-//            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+//            override fun onFailure(call: Call<MovieDetailsResponse>, t: Throwable) {
 //                getClickedMovieDetailsFromApiOnFailure()
 //            }
 //        })
@@ -68,13 +69,13 @@ class MovieDetailsActivity : AppCompatActivity() {
         this@MovieDetailsActivity.showErrorDialog(getString(R.string.error_connection_fail))
     }
 
-    private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieResponse>) {
+    private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieDetailsResponse>) {
         loadingDialog?.dismiss()
         if (response.isSuccessful && response.body() != null) {
             val movieResponse = response.body()
             val clickedMovie = getClickedMovie(movieResponse)
-            //val movieGenres: List<String> = movieResponse?.genres.orEmpty()
-           // showClickedMovieDetails(clickedMovie, movieGenres)
+            val movieGenres: List<String> = movieResponse?.genres.orEmpty()
+            showClickedMovieDetails(clickedMovie, movieGenres)
             setVisibilityVisibleViews()
         } else {
             setVisibilityGoneViews()
