@@ -31,6 +31,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsImageView: ImageView? = null
     private var movieDetailsReleaseDateTextView: TextView? = null
     private var movieDetailsDateTextView: TextView? = null
+    private var movieDetailsVoteTextView: TextView? = null
     private var movieDetailsGenresTextView: TextView? = null
     private var movieDetailsRecyclerView: RecyclerView? = null
     private var loadingDialog: Dialog? = null
@@ -88,6 +89,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsDateTextView?.visibility = View.VISIBLE
         movieDetailsGenresTextView?.visibility = View.VISIBLE
         movieDetailsRecyclerView?.visibility = View.VISIBLE
+        movieDetailsVoteTextView?.visibility = View.VISIBLE
     }
 
     private fun setVisibilityGoneViews() {
@@ -98,6 +100,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsDateTextView?.visibility = View.GONE
         movieDetailsGenresTextView?.visibility = View.GONE
         movieDetailsRecyclerView?.visibility = View.GONE
+        movieDetailsVoteTextView?.visibility = View.GONE
     }
 
     private fun showClickedMovieDetails(clickedMovie: Movie, movieGenres: List<String>) {
@@ -152,5 +155,6 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsDateTextView = findViewById(R.id.movieDetailsDateTextView)
         movieDetailsGenresTextView = findViewById(R.id.movieDetailsGenresTextView)
         movieDetailsRecyclerView = findViewById(R.id.movieDetailsRecyclerView)
+        movieDetailsVoteTextView = findViewById(R.id.movieDetailsVoteTextView)
     }
 }

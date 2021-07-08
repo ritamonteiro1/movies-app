@@ -27,11 +27,11 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:visibility="gone"
         android:contentDescription="@string/movie_details_content_description_movie_image"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsVoteAverageTextView"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitleTextView"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -51,26 +51,8 @@
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsToolBar"
         tools:text="Título do filme" />
 
-    <TextView
-        android:id="@+id/movieDetailsVoteAverageTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:textColor="@color/grey_242"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitleTextView"
-        tools:text="Nota do filme">
-
-    </TextView>
-
     <LinearLayout
-        android:id="@+id/movieDetailsDateLinearLayout"
+        android:id="@+id/movieDetailsVoteAverageLinearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -82,13 +64,49 @@
         app:layout_constraintTop_toBottomOf="@+id/movieDetailsImageView">
 
         <TextView
+            android:id="@+id/movieDetailsVoteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/movie_details_vote_average_text"
+            android:textColor="@color/grey_242"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/movieDetailsVoteAverageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/grey_242"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="10.0">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/movieDetailsDateLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsVoteAverageLinearLayout">
+
+        <TextView
             android:id="@+id/movieDetailsReleaseDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/movie_details_release_date_movie_text"
-            android:visibility="gone"
             android:textColor="@color/grey_242"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/movieDetailsDateTextView"
@@ -96,9 +114,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:textColor="@color/grey_242"
-            android:visibility="gone"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:visibility="gone"
             tools:text="10/10/2020">
 
         </TextView>
@@ -112,13 +130,13 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:text="@string/movie_details_release_gender_text"
         android:textColor="@color/grey_242"
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailsDateLinearLayout"
-        android:text="@string/movie_details_release_gender_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailsDateLinearLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movieDetailsRecyclerView"
