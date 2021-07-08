@@ -45,22 +45,22 @@ class MovieDetailsActivity : AppCompatActivity() {
         loadingDialog?.show()
         setupToolBar()
         val clickedMovieId = retrieverClickedMovieId()
-        getClickedMovieDetailsFromApi(clickedMovieId)
+       // getClickedMovieDetailsFromApi(clickedMovieId)
     }
 
-    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
-        val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
-        val call: Call<MovieResponse> = dataService.recoverMovieDetails(clickedMovieId)
-        call.enqueue(object : Callback<MovieResponse> {
-            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                getClickedMovieDetailsFromApiOnResponse(response)
-            }
-
-            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                getClickedMovieDetailsFromApiOnFailure()
-            }
-        })
-    }
+//    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
+//        val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
+//        val call: Call<MovieResponse> = dataService.recoverMovieDetails(clickedMovieId)
+//        call.enqueue(object : Callback<MovieResponse> {
+//            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
+//                getClickedMovieDetailsFromApiOnResponse(response)
+//            }
+//
+//            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+//                getClickedMovieDetailsFromApiOnFailure()
+//            }
+//        })
+//    }
 
     private fun getClickedMovieDetailsFromApiOnFailure() {
         loadingDialog?.dismiss()
