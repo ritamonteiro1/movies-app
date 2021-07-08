@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
 import com.example.tokenlab.click.listener.OnMovieButtonClickListener
 import com.example.tokenlab.domains.movie.Movie
+import com.example.tokenlab.extensions.convertToValidDateFormat
 import com.example.tokenlab.extensions.downloadImage
 
 class MovieListAdapter(
@@ -51,7 +52,7 @@ class MovieListAdapter(
         fun bind(movieList: Movie, onMovieButtonClickListener: OnMovieButtonClickListener) {
             itemMovieImageView.downloadImage(movieList.imageUrl)
             itemMovieTitleTextView.text = movieList.title
-            itemMovieDateTextView.text = movieList.releaseDate
+            itemMovieDateTextView.text = movieList.releaseDate.convertToValidDateFormat()
             itemMovieVoteAverageTextView.text = movieList.voteAverage.toString()
             itemMovieButton.setOnClickListener { onMovieButtonClickListener.onClick(movieList.id) }
         }

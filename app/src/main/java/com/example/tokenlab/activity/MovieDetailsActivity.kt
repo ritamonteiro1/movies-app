@@ -17,6 +17,7 @@ import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.Movie
 import com.example.tokenlab.domains.movie.MovieResponse
+import com.example.tokenlab.extensions.convertToValidDateFormat
 import com.example.tokenlab.extensions.createLoadingDialog
 import com.example.tokenlab.extensions.downloadImage
 import com.example.tokenlab.extensions.showErrorDialog
@@ -126,7 +127,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
             movieResponse?.title.orEmpty(),
             movieResponse?.imageUrl.orEmpty(),
-            movieResponse?.releaseDate.orEmpty()
+            movieResponse?.releaseDate?.convertToValidDateFormat().orEmpty()
         )
 
     private fun retrieverClickedMovieId(): Int {
