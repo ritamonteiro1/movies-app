@@ -73,8 +73,8 @@ class MovieDetailsActivity : AppCompatActivity() {
         if (response.isSuccessful && response.body() != null) {
             val movieResponse = response.body()
             val clickedMovie = getClickedMovie(movieResponse)
-            val movieGenres: List<String> = movieResponse?.genres.orEmpty()
-            showClickedMovieDetails(clickedMovie, movieGenres)
+            //val movieGenres: List<String> = movieResponse?.genres.orEmpty()
+           // showClickedMovieDetails(clickedMovie, movieGenres)
             setVisibilityVisibleViews()
         } else {
             setVisibilityGoneViews()
