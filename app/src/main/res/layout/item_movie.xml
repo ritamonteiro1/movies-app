@@ -44,42 +44,83 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="14dp"
                 android:textColor="@color/grey_242"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Nome do filme" />
 
-            <TextView
-                android:id="@+id/itemMovieDateTextView"
+            <LinearLayout
+                android:id="@+id/itemMovieDateLinearLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="14dp"
-                android:textColor="@color/grey_242"
-                android:textSize="18sp"
+                android:gravity="start"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
-                app:layout_constraintTop_toBottomOf="@+id/itemMovieTitleTextView"
-                tools:text="Data de estreia" />
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieTitleTextView">
 
-            <TextView
-                android:id="@+id/itemMovieVoteAverageTextView"
+                <TextView
+                    android:id="@+id/itemMovieReleaseDateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_242"
+                    android:textSize="16sp"
+                    android:text="@string/item_movie_release_date_date" />
+
+                <TextView
+                    android:id="@+id/itemMovieDateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/grey_242"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="10/10/2020">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/itemMovieVoteAverageLinearLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="14dp"
-                android:textColor="@color/grey_242"
-                android:textSize="18sp"
+                android:gravity="start"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
-                app:layout_constraintTop_toBottomOf="@+id/itemMovieDateTextView"
-                tools:text="Nota" />
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieDateLinearLayout">
+
+                <TextView
+                    android:id="@+id/itemMovieVoteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_242"
+                    android:textSize="16sp"
+                    android:text="@string/item_movie_vote_average_text">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/itemMovieVoteAverageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_242"
+                    android:layout_marginStart="4dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="10.0" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/itemMovieButton"
@@ -93,7 +134,7 @@
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/itemMovieImageView"
-                app:layout_constraintTop_toBottomOf="@+id/itemMovieVoteAverageTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieVoteAverageLinearLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

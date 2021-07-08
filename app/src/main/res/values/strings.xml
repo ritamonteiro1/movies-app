@@ -10,6 +10,8 @@
     <!--    item_movie.xml-->
     <string name="item_movie_content_description_movie_image">Imagem do filme</string>
     <string name="item_movie_button_text">Ver detalhes</string>
+    <string name="item_movie_release_date_date">Data de estreia:</string>
+    <string name="item_movie_vote_average_text">Nota:</string>
     <!--    activity_movie_details.xml-->
     <string name="movie_details_content_description_movie_image">Imagem do filme selecionado</string>
     <string name="movie_details_release_date_movie_text">Data de lançamento:</string>
