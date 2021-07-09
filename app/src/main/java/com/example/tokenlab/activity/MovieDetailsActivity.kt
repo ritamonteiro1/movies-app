@@ -61,11 +61,11 @@ class MovieDetailsActivity : AppCompatActivity() {
         loadingDialog = this.createLoadingDialog()
         loadingDialog?.show()
         setupToolBar()
-        val clickedMovieId = retrieverClickedMovieId()
-        getClickedMovieDetailsFromApi(clickedMovieId)
+        val movieId = retrieverMovieId()
+        getMovieDetailsFromApi(movieId)
     }
 
-    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
+    private fun getMovieDetailsFromApi(clickedMovieId: Int) {
         val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
         val call: Call<MovieDetailsResponse> = dataService.recoverMovieDetails(clickedMovieId)
         call.enqueue(object : Callback<MovieDetailsResponse> {
@@ -253,7 +253,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.belongsToCollection?.name ?: Constants.NULL_STRING_RESPONSE
         )
 
-    private fun retrieverClickedMovieId(): Int {
+    private fun retrieverMovieId(): Int {
         return intent.getSerializableExtra(Constants.ID_MOVIE) as Int
     }
 
