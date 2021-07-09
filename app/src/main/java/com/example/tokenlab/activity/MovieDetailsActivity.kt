@@ -23,10 +23,7 @@ import com.example.tokenlab.domains.movie.details.details.MovieDetailsResponse
 import com.example.tokenlab.domains.movie.details.production.company.ProductionCompany
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountry
 import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguage
-import com.example.tokenlab.extensions.convertToValidDateFormat
-import com.example.tokenlab.extensions.createLoadingDialog
-import com.example.tokenlab.extensions.downloadImage
-import com.example.tokenlab.extensions.showErrorDialog
+import com.example.tokenlab.extensions.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,7 +85,9 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun getClickedMovieDetailsFromApiOnFailure() {
         loadingDialog?.dismiss()
         setVisibilityGoneViews()
-        this@MovieDetailsActivity.showErrorDialog(getString(R.string.error_connection_fail))
+        this@MovieDetailsActivity.showErrorDialogWithAction(
+            getString(R.string.error_connection_fail)
+        ) { _, _ -> finish() }
     }
 
     private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieDetailsResponse>) {
@@ -98,7 +97,8 @@ class MovieDetailsActivity : AppCompatActivity() {
             getClickedMovieDetails(clickedMovieDetailsResponse)
         } else {
             setVisibilityGoneViews()
-            this@MovieDetailsActivity.showErrorDialog(getString(R.string.occurred_error))
+            this@MovieDetailsActivity.showErrorDialogWithAction(getString(R.string.occurred_error)
+            ) { _, _ -> finish() }
         }
     }
 
@@ -250,7 +250,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.originalLanguage.orEmpty(),
             movieDetailsResponse?.originalTitle.orEmpty(),
             movieDetailsResponse?.tagline.orEmpty(),
-            movieDetailsResponse?.belongsToCollection?.name?:Constants.NULL_STRING_RESPONSE
+            movieDetailsResponse?.belongsToCollection?.name ?: Constants.NULL_STRING_RESPONSE
         )
 
     private fun retrieverClickedMovieId(): Int {
