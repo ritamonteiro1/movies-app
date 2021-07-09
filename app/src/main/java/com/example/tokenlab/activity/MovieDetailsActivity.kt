@@ -37,6 +37,20 @@ class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsGenresTextView: TextView? = null
     private var movieDetailsRecyclerView: RecyclerView? = null
     private var loadingDialog: Dialog? = null
+    private var movieDetailsCountTextView: TextView? = null
+    private var movieDetailsVoteCountTextView: TextView? = null
+    private var movieDetailsLanguageTextView: TextView? = null
+    private var movieDetailsOriginalLanguageTextView: TextView? = null
+    private var movieDetailsOriginalTitleMovieTextView: TextView? = null
+    private var movieDetailsOriginalTitleTextView: TextView? = null
+    private var movieDetailsBelongsToCollectionTextView: TextView? = null
+    private var movieDetailsCollectionTextView: TextView? = null
+    private var movieDetailsSpokenLanguagesTextView: TextView? = null
+    private var movieDetailsSpokenLanguagesRecyclerView: RecyclerView? = null
+    private var movieDetailsProductionCountryTextView: TextView? = null
+    private var movieDetailsProductionCountryRecyclerView: RecyclerView? = null
+    private var movieDetailsProductionCompanyTextView: TextView? = null
+    private var movieDetailsProductionCompanyRecyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,22 +60,25 @@ class MovieDetailsActivity : AppCompatActivity() {
         loadingDialog?.show()
         setupToolBar()
         val clickedMovieId = retrieverClickedMovieId()
-      //  getClickedMovieDetailsFromApi(clickedMovieId)
+        getClickedMovieDetailsFromApi(clickedMovieId)
     }
 
-//    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
-//        val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
-//        val call: Call<MovieDetailsResponse> = dataService.recoverMovieDetails(clickedMovieId)
-//        call.enqueue(object : Callback<MovieDetailsResponse> {
-//            override fun onResponse(call: Call<MovieDetailsResponse>, response: Response<MovieDetailsResponse>) {
-//                getClickedMovieDetailsFromApiOnResponse(response)
-//            }
-//
-//            override fun onFailure(call: Call<MovieDetailsResponse>, t: Throwable) {
-//                getClickedMovieDetailsFromApiOnFailure()
-//            }
-//        })
-//    }
+    private fun getClickedMovieDetailsFromApi(clickedMovieId: Int) {
+        val dataService: DataService = Api.setupRetrofit().create(DataService::class.java)
+        val call: Call<MovieDetailsResponse> = dataService.recoverMovieDetails(clickedMovieId)
+        call.enqueue(object : Callback<MovieDetailsResponse> {
+            override fun onResponse(
+                call: Call<MovieDetailsResponse>,
+                response: Response<MovieDetailsResponse>
+            ) {
+                getClickedMovieDetailsFromApiOnResponse(response)
+            }
+
+            override fun onFailure(call: Call<MovieDetailsResponse>, t: Throwable) {
+                getClickedMovieDetailsFromApiOnFailure()
+            }
+        })
+    }
 
     private fun getClickedMovieDetailsFromApiOnFailure() {
         loadingDialog?.dismiss()
@@ -73,9 +90,9 @@ class MovieDetailsActivity : AppCompatActivity() {
         loadingDialog?.dismiss()
         if (response.isSuccessful && response.body() != null) {
             val movieResponse = response.body()
-            val clickedMovie = getClickedMovie(movieResponse)
+            //val clickedMovie = getClickedMovie(movieResponse)
             val movieGenres: List<String> = movieResponse?.genres.orEmpty()
-            showClickedMovieDetails(clickedMovie, movieGenres)
+            //showClickedMovieDetails(clickedMovie, movieGenres)
             setVisibilityVisibleViews()
         } else {
             setVisibilityGoneViews()
@@ -92,6 +109,20 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsGenresTextView?.visibility = View.VISIBLE
         movieDetailsRecyclerView?.visibility = View.VISIBLE
         movieDetailsVoteTextView?.visibility = View.VISIBLE
+        movieDetailsCountTextView?.visibility = View.VISIBLE
+        movieDetailsVoteCountTextView?.visibility = View.VISIBLE
+        movieDetailsLanguageTextView?.visibility = View.VISIBLE
+        movieDetailsOriginalLanguageTextView?.visibility = View.VISIBLE
+        movieDetailsOriginalTitleMovieTextView?.visibility = View.VISIBLE
+        movieDetailsOriginalTitleTextView?.visibility = View.VISIBLE
+        movieDetailsBelongsToCollectionTextView?.visibility = View.VISIBLE
+        movieDetailsCollectionTextView?.visibility = View.VISIBLE
+        movieDetailsSpokenLanguagesTextView?.visibility = View.VISIBLE
+        movieDetailsSpokenLanguagesRecyclerView?.visibility = View.VISIBLE
+        movieDetailsProductionCountryTextView?.visibility = View.VISIBLE
+        movieDetailsProductionCountryRecyclerView?.visibility = View.VISIBLE
+        movieDetailsProductionCompanyTextView?.visibility = View.VISIBLE
+        movieDetailsProductionCompanyRecyclerView?.visibility = View.VISIBLE
     }
 
     private fun setVisibilityGoneViews() {
@@ -103,6 +134,20 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsGenresTextView?.visibility = View.GONE
         movieDetailsRecyclerView?.visibility = View.GONE
         movieDetailsVoteTextView?.visibility = View.GONE
+        movieDetailsCountTextView?.visibility = View.GONE
+        movieDetailsVoteCountTextView?.visibility = View.GONE
+        movieDetailsLanguageTextView?.visibility = View.GONE
+        movieDetailsOriginalLanguageTextView?.visibility = View.GONE
+        movieDetailsOriginalTitleMovieTextView?.visibility = View.GONE
+        movieDetailsOriginalTitleTextView?.visibility = View.GONE
+        movieDetailsBelongsToCollectionTextView?.visibility = View.GONE
+        movieDetailsCollectionTextView?.visibility = View.GONE
+        movieDetailsSpokenLanguagesTextView?.visibility = View.GONE
+        movieDetailsSpokenLanguagesRecyclerView?.visibility = View.GONE
+        movieDetailsProductionCountryTextView?.visibility = View.GONE
+        movieDetailsProductionCountryRecyclerView?.visibility = View.GONE
+        movieDetailsProductionCompanyTextView?.visibility = View.GONE
+        movieDetailsProductionCompanyRecyclerView?.visibility = View.GONE
     }
 
     private fun showClickedMovieDetails(clickedMovie: Movie, movieGenres: List<String>) {
@@ -158,5 +203,27 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsGenresTextView = findViewById(R.id.movieDetailsGenresTextView)
         movieDetailsRecyclerView = findViewById(R.id.movieDetailsRecyclerView)
         movieDetailsVoteTextView = findViewById(R.id.movieDetailsVoteTextView)
+        movieDetailsCountTextView = findViewById(R.id.movieDetailsCountTextView)
+        movieDetailsVoteCountTextView = findViewById(R.id.movieDetailsVoteCountTextView)
+        movieDetailsLanguageTextView = findViewById(R.id.movieDetailsLanguageTextView)
+        movieDetailsOriginalLanguageTextView =
+            findViewById(R.id.movieDetailsOriginalLanguageTextView)
+        movieDetailsOriginalTitleMovieTextView =
+            findViewById(R.id.movieDetailsOriginalTitleMovieTextView)
+        movieDetailsOriginalTitleTextView = findViewById(R.id.movieDetailsOriginalTitleTextView)
+        movieDetailsBelongsToCollectionTextView =
+            findViewById(R.id.movieDetailsBelongsToCollectionTextView)
+        movieDetailsCollectionTextView = findViewById(R.id.movieDetailsCollectionTextView)
+        movieDetailsSpokenLanguagesTextView = findViewById(R.id.movieDetailsSpokenLanguagesTextView)
+        movieDetailsSpokenLanguagesRecyclerView =
+            findViewById(R.id.movieDetailsSpokenLanguagesRecyclerView)
+        movieDetailsProductionCountryTextView =
+            findViewById(R.id.movieDetailsProductionCountryTextView)
+        movieDetailsProductionCountryRecyclerView =
+            findViewById(R.id.movieDetailsProductionCountryRecyclerView)
+        movieDetailsProductionCompanyTextView =
+            findViewById(R.id.movieDetailsProductionCompanyTextView)
+        movieDetailsProductionCompanyRecyclerView =
+            findViewById(R.id.movieDetailsProductionCompanyRecyclerView)
     }
 }
