@@ -14,10 +14,5 @@ data class MovieDetails(
     @SerializedName("poster_url") val imageUrl: String,
     @SerializedName("original_language") val originalLanguage: String,
     @SerializedName("original_title") val originalTitle: String,
-    val tagline: String,
-    @SerializedName("spoken_languages") val spokenLanguages: List<SpokenLanguageResponse>,
-    @SerializedName("production_countries") val productionCountries: List<ProductionCountryResponse>,
-    @SerializedName("production_companies") val productionCompanies: List<ProductionCompanyResponse>,
-    val genres: List<String>,
-    @SerializedName("belongs_to_collection") val belongsToCollection: BelongsToCollection
+    val tagline: String
 )

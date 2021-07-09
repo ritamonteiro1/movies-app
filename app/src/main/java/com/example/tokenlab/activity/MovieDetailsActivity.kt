@@ -16,9 +16,13 @@ import com.example.tokenlab.api.Api
 import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.Movie
-import com.example.tokenlab.domains.movie.MovieResponse
+import com.example.tokenlab.domains.movie.details.belongs.to.collection.BelongsToCollection
+import com.example.tokenlab.domains.movie.details.belongs.to.collection.BelongsToCollectionResponse
+import com.example.tokenlab.domains.movie.details.details.MovieDetails
 import com.example.tokenlab.domains.movie.details.details.MovieDetailsResponse
-import com.example.tokenlab.extensions.convertToValidDateFormat
+import com.example.tokenlab.domains.movie.details.production.company.ProductionCompanyResponse
+import com.example.tokenlab.domains.movie.details.production.country.ProductionCountryResponse
+import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguageResponse
 import com.example.tokenlab.extensions.createLoadingDialog
 import com.example.tokenlab.extensions.downloadImage
 import com.example.tokenlab.extensions.showErrorDialog
@@ -89,10 +93,25 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieDetailsResponse>) {
         loadingDialog?.dismiss()
         if (response.isSuccessful && response.body() != null) {
-            val movieResponse = response.body()
-            //val clickedMovie = getClickedMovie(movieResponse)
-            val movieGenres: List<String> = movieResponse?.genres.orEmpty()
-            //showClickedMovieDetails(clickedMovie, movieGenres)
+            val movieDetailsResponse = response.body()
+            val clickedMovieDetails = getClickedMovieDetails(movieDetailsResponse)
+            val movieDetailsGenres: List<String> = movieDetailsResponse?.genres.orEmpty()
+            val productionCompanies: List<ProductionCompanyResponse> =
+                movieDetailsResponse?.productionCompanies.orEmpty()
+            val productionCountries: List<ProductionCountryResponse> =
+                movieDetailsResponse?.productionCountries.orEmpty()
+            val spokenLanguages: List<SpokenLanguageResponse> =
+                movieDetailsResponse?.spokenLanguages.orEmpty()
+            val belongsToCollection: String =
+                movieDetailsResponse?.belongsToCollection?.name.orEmpty()
+//            showClickedMovieDetails(
+//                clickedMovieDetails,
+//                movieDetailsGenres,
+//                productionCompanies,
+//                productionCountries,
+//                spokenLanguages,
+//                belongsToCollection
+//            )
             setVisibilityVisibleViews()
         } else {
             setVisibilityGoneViews()
@@ -150,12 +169,15 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsProductionCompanyRecyclerView?.visibility = View.GONE
     }
 
-    private fun showClickedMovieDetails(clickedMovie: Movie, movieGenres: List<String>) {
+    private fun showClickedMovieDetails(
+        clickedMovie: MovieDetails,
+        movieDetailsGenres: List<String>
+    ) {
         movieDetailsTitleTextView?.text = clickedMovie.title
         movieDetailsVoteAverageTextView?.text = clickedMovie.voteAverage.toString()
         movieDetailsImageView?.downloadImage(clickedMovie.imageUrl)
         movieDetailsDateTextView?.text = clickedMovie.releaseDate
-        val genderListAdapter = GenderListAdapter(movieGenres)
+        val genderListAdapter = GenderListAdapter(movieDetailsGenres)
         setupAdapter(genderListAdapter)
     }
 
@@ -167,13 +189,16 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsRecyclerView?.layoutManager = layoutManager
     }
 
-    private fun getClickedMovie(movieResponse: MovieResponse?) =
-        Movie(
-            movieResponse?.id ?: Constants.NULL_INT_RESPONSE,
-            movieResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
-            movieResponse?.title.orEmpty(),
-            movieResponse?.imageUrl.orEmpty(),
-            movieResponse?.releaseDate?.convertToValidDateFormat().orEmpty()
+    private fun getClickedMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
+        MovieDetails(
+            movieDetailsResponse?.title.orEmpty(),
+            movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
+            movieDetailsResponse?.voteCount ?: Constants.NULL_INT_RESPONSE,
+            movieDetailsResponse?.releaseDate.orEmpty(),
+            movieDetailsResponse?.imageUrl.orEmpty(),
+            movieDetailsResponse?.originalLanguage.orEmpty(),
+            movieDetailsResponse?.originalTitle.orEmpty(),
+            movieDetailsResponse?.tagline.orEmpty()
         )
 
     private fun retrieverClickedMovieId(): Int {
