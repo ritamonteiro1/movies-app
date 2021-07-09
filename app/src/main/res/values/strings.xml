@@ -37,4 +37,7 @@
     <string name="main_tool_bar_title_text">Lista de filmes</string>
     <!--    MovieDetailsActivity-->
     <string name="movie_details_tool_bar_title_text">Detalhes do filme</string>
+<!--    item_production_company.xml-->
+    <string name="item_production_company_name_text">Nome:</string>
+    <string name="item_production_company_country_text">País:</string>
 </resources>
