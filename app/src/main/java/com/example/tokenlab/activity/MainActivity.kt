@@ -34,10 +34,6 @@ class MainActivity : AppCompatActivity() {
         findViewsById()
         loadingDialog = this.createLoadingDialog()
         setupToolBar()
-    }
-
-    override fun onStart() {
-        super.onStart()
         loadingDialog?.show()
         getMovieListFromApi()
     }
