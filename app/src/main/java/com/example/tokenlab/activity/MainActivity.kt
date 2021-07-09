@@ -18,7 +18,7 @@ import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.Movie
 import com.example.tokenlab.domains.movie.MovieResponse
 import com.example.tokenlab.extensions.createLoadingDialog
-import com.example.tokenlab.extensions.showErrorDialog
+import com.example.tokenlab.extensions.showErrorDialogWithAction
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,7 +58,9 @@ class MainActivity : AppCompatActivity() {
     private fun getMovieListFromApiOnFailure() {
         loadingDialog?.dismiss()
         mainRecyclerView?.visibility = View.GONE
-        this@MainActivity.showErrorDialog(getString(R.string.error_connection_fail))
+        this@MainActivity.showErrorDialogWithAction(
+            getString(R.string.error_connection_fail)
+        ) { _, _ -> getMovieListFromApi() }
     }
 
     private fun getMovieListFromApiOnResponse(response: Response<List<MovieResponse>>) {
@@ -72,7 +74,9 @@ class MainActivity : AppCompatActivity() {
             setupAdapter(movieListAdapter)
         } else {
             mainRecyclerView?.visibility = View.GONE
-            this@MainActivity.showErrorDialog(getString(R.string.occurred_error))
+            this@MainActivity.showErrorDialogWithAction(
+                getString(R.string.occurred_error)
+            ) { _, _ -> getMovieListFromApi() }
         }
     }
 
@@ -100,7 +104,9 @@ class MainActivity : AppCompatActivity() {
     private fun treatMovieListEmpty(movieList: List<Movie>) {
         if (movieList.isEmpty()) {
             mainRecyclerView?.visibility = View.GONE
-            this.showErrorDialog(getString(R.string.occurred_error))
+            this.showErrorDialogWithAction(
+                getString(R.string.occurred_error)
+            ) { _, _ -> getMovieListFromApi() }
         }
     }
 
