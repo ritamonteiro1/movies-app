@@ -33,6 +33,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:contentDescription="@string/movie_details_content_description_movie_image"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
             android:textColor="@color/grey_242"
             android:textSize="18sp"
             android:textStyle="bold"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +77,7 @@
                 android:text="@string/movie_details_vote_average_text"
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
+                tools:visibility="visible"
                 android:visibility="gone" />
 
             <TextView
@@ -86,6 +89,7 @@
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                tools:visibility="visible"
                 android:visibility="gone"
                 app:drawableEndCompat="@drawable/ic_baseline_star_24"
                 tools:text="10.0">
@@ -113,6 +117,7 @@
                 android:text="@string/movie_details_release_date_movie_text"
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
+                tools:visibility="visible"
                 android:visibility="gone" />
 
             <TextView
@@ -123,6 +128,7 @@
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                tools:visibility="visible"
                 android:visibility="gone"
                 tools:text="10/10/2020">
 
@@ -149,6 +155,7 @@
                 android:text="@string/movie_details_vote_count_text"
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
+                tools:visibility="visible"
                 android:visibility="gone" />
 
             <TextView
@@ -159,6 +166,7 @@
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                tools:visibility="visible"
                 android:visibility="gone"
                 tools:text="200">
 
@@ -185,6 +193,7 @@
                 android:text="@string/movie_details_original_language_text"
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
+                tools:visibility="visible"
                 android:visibility="gone" />
 
             <TextView
@@ -195,6 +204,7 @@
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                tools:visibility="visible"
                 android:visibility="gone"
                 tools:text="Português">
 
@@ -221,6 +231,7 @@
                 android:text="@string/movie_details_original_title_text"
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
+                tools:visibility="visible"
                 android:visibility="gone" />
 
             <TextView
@@ -231,6 +242,7 @@
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                tools:visibility="visible"
                 android:visibility="gone"
                 tools:text="Título original">
 
@@ -257,6 +269,7 @@
                 android:text="@string/movie_details_belongs_to_collection_text"
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
+                tools:visibility="visible"
                 android:visibility="gone" />
 
             <TextView
@@ -267,6 +280,7 @@
                 android:textColor="@color/grey_242"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                tools:visibility="visible"
                 android:visibility="gone"
                 tools:text="Coleção 1">
 
@@ -284,6 +298,7 @@
             android:text="@string/movie_details_release_gender_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -299,6 +314,7 @@
             android:text="@string/movie_details_spoken_languages_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -311,6 +327,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -325,6 +342,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -342,6 +360,7 @@
             android:text="@string/movie_details_production_country_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -354,6 +373,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -371,6 +391,7 @@
             android:text="@string/movie_details_production_company_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -384,6 +405,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
+            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
