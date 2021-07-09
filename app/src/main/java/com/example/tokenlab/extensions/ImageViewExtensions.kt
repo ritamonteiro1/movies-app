@@ -6,5 +6,5 @@ import com.example.tokenlab.R
 
 
 fun ImageView.downloadImage(imageUrl: String) {
-    Glide.with(context).load(imageUrl).error(R.drawable.img_error).into(this)
+    Glide.with(context).load(imageUrl).error(R.drawable.ic_baseline_image_not_supported_24).into(this)
 }
