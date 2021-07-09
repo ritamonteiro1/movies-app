@@ -95,7 +95,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         if (response.isSuccessful && response.body() != null) {
             val movieDetailsResponse = response.body()
             val clickedMovieDetails = getClickedMovieDetails(movieDetailsResponse)
-            val movieDetailsGenres: List<String> = movieDetailsResponse?.genres.orEmpty()
+            val movieDetailsGenres: List<String> = getMovieDetailsGenres(movieDetailsResponse)
             val productionCompanies: List<ProductionCompanyResponse> =
                 movieDetailsResponse?.productionCompanies.orEmpty()
             val productionCountries: List<ProductionCountryResponse> =
@@ -118,6 +118,9 @@ class MovieDetailsActivity : AppCompatActivity() {
             this@MovieDetailsActivity.showErrorDialog(getString(R.string.occurred_error))
         }
     }
+
+    private fun getMovieDetailsGenres(movieDetailsResponse: MovieDetailsResponse?) =
+        movieDetailsResponse?.genres.orEmpty()
 
     private fun setVisibilityVisibleViews() {
         movieDetailsImageView?.visibility = View.VISIBLE
