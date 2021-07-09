@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun treatMovieListEmpty(movieList: List<Movie>) {
         if (movieList.isEmpty()) {
+            mainRecyclerView?.visibility = View.GONE
             this.showErrorDialog(getString(R.string.occurred_error))
         }
     }
