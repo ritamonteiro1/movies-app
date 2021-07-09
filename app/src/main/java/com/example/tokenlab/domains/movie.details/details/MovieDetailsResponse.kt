@@ -1,5 +1,6 @@
 package com.example.tokenlab.domains.movie.details.details
 
+import com.example.tokenlab.domains.movie.details.belongs.to.collection.BelongsToCollectionResponse
 import com.example.tokenlab.domains.movie.details.production.company.ProductionCompanyResponse
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountryResponse
 import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguageResponse
@@ -18,5 +19,5 @@ data class MovieDetailsResponse(
     @SerializedName("production_countries") val productionCountries: List<ProductionCountryResponse>?,
     @SerializedName("production_companies") val productionCompanies: List<ProductionCompanyResponse>?,
     val genres: List<String>?,
-    @SerializedName("belongs_to_collection") val belongsToCollection: BelongsToCollection?
+    @SerializedName("belongs_to_collection") val belongsToCollection: BelongsToCollectionResponse?
 )

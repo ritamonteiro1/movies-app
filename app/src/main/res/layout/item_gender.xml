@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemGenderConstraintLayout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <com.google.android.material.chip.Chip
@@ -12,14 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="2dp"
         android:gravity="start"
-        android:textSize="12sp"
+        android:textColor="@color/grey_242"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Gênero"
-        android:textStyle="bold"
-        android:textColor="@color/grey_242"/>
+        tools:text="Gênero" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

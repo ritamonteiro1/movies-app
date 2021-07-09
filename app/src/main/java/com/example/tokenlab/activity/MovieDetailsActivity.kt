@@ -1,27 +1,31 @@
 package com.example.tokenlab.activity
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
 import com.example.tokenlab.adapter.GenderListAdapter
+import com.example.tokenlab.adapter.ProductionCompanyListAdapter
+import com.example.tokenlab.adapter.ProductionCountryListAdapter
+import com.example.tokenlab.adapter.SpokenLanguageListAdapter
 import com.example.tokenlab.api.Api
 import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.details.details.MovieDetails
 import com.example.tokenlab.domains.movie.details.details.MovieDetailsResponse
 import com.example.tokenlab.domains.movie.details.production.company.ProductionCompany
-import com.example.tokenlab.domains.movie.details.production.company.ProductionCompanyResponse
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountry
-import com.example.tokenlab.domains.movie.details.production.country.ProductionCountryResponse
 import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguage
+import com.example.tokenlab.extensions.convertToValidDateFormat
 import com.example.tokenlab.extensions.createLoadingDialog
 import com.example.tokenlab.extensions.downloadImage
 import com.example.tokenlab.extensions.showErrorDialog
@@ -38,7 +42,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsDateTextView: TextView? = null
     private var movieDetailsVoteTextView: TextView? = null
     private var movieDetailsGenresTextView: TextView? = null
-    private var movieDetailsRecyclerView: RecyclerView? = null
+    private var movieDetailsGenderRecyclerView: RecyclerView? = null
     private var loadingDialog: Dialog? = null
     private var movieDetailsCountTextView: TextView? = null
     private var movieDetailsVoteCountTextView: TextView? = null
@@ -115,7 +119,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun getSpokenLanguages(clickedMovieDetailsResponse: MovieDetailsResponse?) =
         clickedMovieDetailsResponse?.spokenLanguages?.map {
             SpokenLanguage(it.name.orEmpty())
-        }
+        } ?: emptyList()
 
     private fun getProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCountries?.map {
@@ -137,7 +141,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsReleaseDateTextView?.visibility = View.VISIBLE
         movieDetailsDateTextView?.visibility = View.VISIBLE
         movieDetailsGenresTextView?.visibility = View.VISIBLE
-        movieDetailsRecyclerView?.visibility = View.VISIBLE
+        movieDetailsGenderRecyclerView?.visibility = View.VISIBLE
         movieDetailsVoteTextView?.visibility = View.VISIBLE
         movieDetailsCountTextView?.visibility = View.VISIBLE
         movieDetailsVoteCountTextView?.visibility = View.VISIBLE
@@ -162,7 +166,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsReleaseDateTextView?.visibility = View.GONE
         movieDetailsDateTextView?.visibility = View.GONE
         movieDetailsGenresTextView?.visibility = View.GONE
-        movieDetailsRecyclerView?.visibility = View.GONE
+        movieDetailsGenderRecyclerView?.visibility = View.GONE
         movieDetailsVoteTextView?.visibility = View.GONE
         movieDetailsCountTextView?.visibility = View.GONE
         movieDetailsVoteCountTextView?.visibility = View.GONE
@@ -181,26 +185,61 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun showClickedMovieDetails(
-        clickedMovie: MovieDetails,
+        movieDetails: MovieDetails,
         movieDetailsGenres: List<String>,
         productionCompanies: List<ProductionCompany>,
         productionCountries: List<ProductionCountry>,
-        spokenLanguage: SpokenLanguage
+        spokenLanguage: List<SpokenLanguage>
     ) {
-        movieDetailsTitleTextView?.text = clickedMovie.title
-        movieDetailsVoteAverageTextView?.text = clickedMovie.voteAverage.toString()
-        movieDetailsImageView?.downloadImage(clickedMovie.imageUrl)
-        movieDetailsDateTextView?.text = clickedMovie.releaseDate
+        movieDetailsTitleTextView?.text = movieDetails.title
+        movieDetailsVoteAverageTextView?.text = movieDetails.voteAverage.toString()
+        movieDetailsImageView?.downloadImage(movieDetails.imageUrl)
+        movieDetailsDateTextView?.text = movieDetails.releaseDate.convertToValidDateFormat()
         val genderListAdapter = GenderListAdapter(movieDetailsGenres)
-        setupAdapter(genderListAdapter)
+        setupGenderListAdapter(genderListAdapter)
+
+        movieDetailsVoteCountTextView?.text = movieDetails.voteCount.toString()
+        movieDetailsOriginalLanguageTextView?.text = movieDetails.originalLanguage
+        movieDetailsOriginalTitleTextView?.text = movieDetails.originalTitle
+        movieDetailsCollectionTextView?.text = movieDetails.belongsToCollection
+        val spokenLanguageListAdapter = SpokenLanguageListAdapter(spokenLanguage)
+        setupSpokenLanguageListAdapter(spokenLanguageListAdapter)
+        val productionCompanyListAdapter = ProductionCompanyListAdapter(productionCompanies)
+        setupProductionCompanyListAdapter(productionCompanyListAdapter)
+        val productionCountryListAdapter = ProductionCountryListAdapter(productionCountries)
+        setupProductionCountryListAdapter(productionCountryListAdapter)
     }
 
-    private fun setupAdapter(genderListAdapter: GenderListAdapter) {
-        movieDetailsRecyclerView?.adapter = genderListAdapter
+    private fun setupProductionCountryListAdapter(productionCountryListAdapter: ProductionCountryListAdapter) {
+        movieDetailsProductionCountryRecyclerView?.adapter = productionCountryListAdapter
         val layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
-        movieDetailsRecyclerView?.layoutManager = layoutManager
+        movieDetailsProductionCountryRecyclerView?.layoutManager = layoutManager
+    }
+
+    private fun setupProductionCompanyListAdapter(productionCompanyListAdapter: ProductionCompanyListAdapter) {
+        movieDetailsProductionCompanyRecyclerView?.adapter = productionCompanyListAdapter
+        val layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
+        movieDetailsProductionCompanyRecyclerView?.layoutManager = layoutManager
+    }
+
+    private fun setupSpokenLanguageListAdapter(spokenLanguageListAdapter: SpokenLanguageListAdapter) {
+        movieDetailsSpokenLanguagesRecyclerView?.adapter = spokenLanguageListAdapter
+        val layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
+        movieDetailsSpokenLanguagesRecyclerView?.layoutManager = layoutManager
+    }
+
+    private fun setupGenderListAdapter(genderListAdapter: GenderListAdapter) {
+        movieDetailsGenderRecyclerView?.adapter = genderListAdapter
+        val layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
+        movieDetailsGenderRecyclerView?.layoutManager = layoutManager
     }
 
     private fun getMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
@@ -241,7 +280,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsReleaseDateTextView = findViewById(R.id.movieDetailsReleaseDateTextView)
         movieDetailsDateTextView = findViewById(R.id.movieDetailsDateTextView)
         movieDetailsGenresTextView = findViewById(R.id.movieDetailsGenresTextView)
-        movieDetailsRecyclerView = findViewById(R.id.movieDetailsRecyclerView)
+        movieDetailsGenderRecyclerView = findViewById(R.id.movieDetailsGenderRecyclerView)
         movieDetailsVoteTextView = findViewById(R.id.movieDetailsVoteTextView)
         movieDetailsCountTextView = findViewById(R.id.movieDetailsCountTextView)
         movieDetailsVoteCountTextView = findViewById(R.id.movieDetailsVoteCountTextView)
