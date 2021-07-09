@@ -330,7 +330,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsSpokenLanguagesTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_gender" />
+            tools:listitem="@layout/item_spoken_language" />
 
         <TextView
             android:id="@+id/movieDetailsProductionCountryTextView"
@@ -359,7 +359,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsProductionCountryTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_gender" />
+            tools:listitem="@layout/item_production_country" />
 
         <TextView
             android:id="@+id/movieDetailsProductionCompanyTextView"
@@ -390,7 +390,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsProductionCompanyTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_gender" />
+            tools:listitem="@layout/item_production_company" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
