@@ -73,16 +73,16 @@ class MovieDetailsActivity : AppCompatActivity() {
                 call: Call<MovieDetailsResponse>,
                 response: Response<MovieDetailsResponse>
             ) {
-                getClickedMovieDetailsFromApiOnResponse(response)
+                getMovieDetailsFromApiOnResponse(response)
             }
 
             override fun onFailure(call: Call<MovieDetailsResponse>, t: Throwable) {
-                getClickedMovieDetailsFromApiOnFailure()
+                getMovieDetailsFromApiOnFailure()
             }
         })
     }
 
-    private fun getClickedMovieDetailsFromApiOnFailure() {
+    private fun getMovieDetailsFromApiOnFailure() {
         loadingDialog?.dismiss()
         setVisibilityGoneViews()
         this@MovieDetailsActivity.showErrorDialogWithAction(
@@ -90,46 +90,47 @@ class MovieDetailsActivity : AppCompatActivity() {
         ) { _, _ -> finish() }
     }
 
-    private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieDetailsResponse>) {
+    private fun getMovieDetailsFromApiOnResponse(response: Response<MovieDetailsResponse>) {
         loadingDialog?.dismiss()
         if (response.isSuccessful && response.body() != null) {
-            val clickedMovieDetailsResponse = response.body()
-            getClickedMovieDetails(clickedMovieDetailsResponse)
+            val movieDetailsResponse = response.body()
+            getMovieDetails(movieDetailsResponse)
         } else {
             setVisibilityGoneViews()
-            this@MovieDetailsActivity.showErrorDialogWithAction(getString(R.string.occurred_error)
+            this@MovieDetailsActivity.showErrorDialogWithAction(
+                getString(R.string.occurred_error)
             ) { _, _ -> finish() }
         }
     }
 
-    private fun getClickedMovieDetails(clickedMovieDetailsResponse: MovieDetailsResponse?) {
-        val movieDetails = getMovieDetails(clickedMovieDetailsResponse)
-        val genres = getGenres(clickedMovieDetailsResponse)
-        val productionCompanies = getProductionCompanies(clickedMovieDetailsResponse)
-        val productionCountries = getProductionCountries(clickedMovieDetailsResponse)
-        val spokenLanguages = getSpokenLanguages(clickedMovieDetailsResponse)
-        showClickedMovieDetails(
+    private fun getMovieDetails(movieDetailsResponse: MovieDetailsResponse?) {
+        val movieDetails = mapToMovieDetails(movieDetailsResponse)
+        val genres = mapToGenres(movieDetailsResponse)
+        val productionCompanies = mapToProductionCompanies(movieDetailsResponse)
+        val productionCountries = mapToProductionCountries(movieDetailsResponse)
+        val spokenLanguages = mapToSpokenLanguages(movieDetailsResponse)
+        showMovieDetails(
             movieDetails, genres, productionCompanies, productionCountries, spokenLanguages
         )
         setVisibilityVisibleViews()
     }
 
-    private fun getSpokenLanguages(clickedMovieDetailsResponse: MovieDetailsResponse?) =
-        clickedMovieDetailsResponse?.spokenLanguages?.map {
+    private fun mapToSpokenLanguages(movieDetailsResponse: MovieDetailsResponse?) =
+        movieDetailsResponse?.spokenLanguages?.map {
             SpokenLanguage(it.name.orEmpty())
         } ?: emptyList()
 
-    private fun getProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
+    private fun mapToProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCountries?.map {
             ProductionCountry(it.name.orEmpty())
         } ?: emptyList()
 
-    private fun getProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
+    private fun mapToProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCompanies?.map {
-            ProductionCompany(it.name.orEmpty(), it.originCountry.orEmpty())
+            ProductionCompany(it.name.orEmpty(), it.originCountry.orEmpty(), it.logoUrl.orEmpty())
         } ?: emptyList()
 
-    private fun getGenres(movieDetailsResponse: MovieDetailsResponse?) =
+    private fun mapToGenres(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.genres.orEmpty()
 
     private fun setVisibilityVisibleViews() {
@@ -182,7 +183,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsProductionCompanyRecyclerView?.visibility = View.GONE
     }
 
-    private fun showClickedMovieDetails(
+    private fun showMovieDetails(
         movieDetails: MovieDetails,
         movieDetailsGenres: List<String>,
         productionCompanies: List<ProductionCompany>,
@@ -235,21 +236,21 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setupGenderListAdapter(genderListAdapter: GenderListAdapter) {
         movieDetailsGenderRecyclerView?.adapter = genderListAdapter
         val layoutManager = LinearLayoutManager(
-            this, LinearLayoutManager.VERTICAL, false
+            this, LinearLayoutManager.HORIZONTAL, false
         )
         movieDetailsGenderRecyclerView?.layoutManager = layoutManager
     }
 
-    private fun getMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
+    private fun mapToMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
         MovieDetails(
-            movieDetailsResponse?.title.orEmpty(),
+            movieDetailsResponse?.title ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
             movieDetailsResponse?.voteCount ?: Constants.NULL_INT_RESPONSE,
-            movieDetailsResponse?.releaseDate.orEmpty(),
-            movieDetailsResponse?.imageUrl.orEmpty(),
-            movieDetailsResponse?.originalLanguage.orEmpty(),
-            movieDetailsResponse?.originalTitle.orEmpty(),
-            movieDetailsResponse?.tagline.orEmpty(),
+            movieDetailsResponse?.releaseDate ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.imageUrl ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.originalLanguage ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.tagline ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.belongsToCollection?.name ?: Constants.NULL_STRING_RESPONSE
         )
 

@@ -40,4 +40,5 @@
 <!--    item_production_company.xml-->
     <string name="item_production_company_name_text">Nome:</string>
     <string name="item_production_company_country_text">País:</string>
+    <string name="item_production_company_image_content_description">Imagem da empresa</string>
 </resources>

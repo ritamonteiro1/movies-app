@@ -14,8 +14,8 @@ import com.example.tokenlab.extensions.convertToValidDateFormat
 import com.example.tokenlab.extensions.downloadImage
 
 class MovieListAdapter(
-    private var movieList: List<Movie>,
-    private var onMovieButtonClickListener: OnMovieButtonClickListener
+    private val movieList: List<Movie>,
+    private val onMovieButtonClickListener: OnMovieButtonClickListener
 ) : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
 

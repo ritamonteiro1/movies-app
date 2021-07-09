@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountry
 
-class ProductionCountryListAdapter(private var productionCountryList: List<ProductionCountry>) :
+class ProductionCountryListAdapter(private val productionCountryList: List<ProductionCountry>) :
     RecyclerView.Adapter<ProductionCountryListAdapter.ProductionCountryViewHolder>() {
 
 

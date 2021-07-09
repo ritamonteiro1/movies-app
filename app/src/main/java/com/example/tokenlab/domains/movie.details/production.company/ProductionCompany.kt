@@ -1,9 +1,7 @@
 package com.example.tokenlab.domains.movie.details.production.company
 
-import com.google.gson.annotations.SerializedName
-
 data class ProductionCompany(
     val name: String,
-    @SerializedName("origin_country")
-    val originCountry: String
+    val originCountry: String,
+    val logoUrl: String
 )

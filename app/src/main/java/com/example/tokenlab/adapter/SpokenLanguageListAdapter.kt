@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
 import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguage
 
-class SpokenLanguageListAdapter(var spokenLanguageList: List<SpokenLanguage>) :
+class SpokenLanguageListAdapter(private val spokenLanguageList: List<SpokenLanguage>) :
     RecyclerView.Adapter<SpokenLanguageListAdapter.SpokenListViewHolder>() {
 
 

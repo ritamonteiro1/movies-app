@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
 import com.google.android.material.chip.Chip
 
-class GenderListAdapter(private var genderList: List<String>) :
+class GenderListAdapter(private val genderList: List<String>) :
     RecyclerView.Adapter<GenderListAdapter.GenderListViewHolder>() {
 
 
