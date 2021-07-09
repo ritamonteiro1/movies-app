@@ -97,7 +97,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             val clickedMovieDetails = getClickedMovieDetails(movieDetailsResponse)
             val movieDetailsGenres: List<String> = getMovieDetailsGenres(movieDetailsResponse)
             val productionCompanies: List<ProductionCompanyResponse> =
-                movieDetailsResponse?.productionCompanies.orEmpty()
+                getMovieDetailsProductionCompanies(movieDetailsResponse)
             val productionCountries: List<ProductionCountryResponse> =
                 movieDetailsResponse?.productionCountries.orEmpty()
             val spokenLanguages: List<SpokenLanguageResponse> =
@@ -118,6 +118,9 @@ class MovieDetailsActivity : AppCompatActivity() {
             this@MovieDetailsActivity.showErrorDialog(getString(R.string.occurred_error))
         }
     }
+
+    private fun getMovieDetailsProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
+        movieDetailsResponse?.productionCompanies.orEmpty()
 
     private fun getMovieDetailsGenres(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.genres.orEmpty()
