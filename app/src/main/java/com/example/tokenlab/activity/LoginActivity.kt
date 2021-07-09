@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
     private fun moveToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun treatInvalidUserPassword(validUserPassword: Boolean) {
