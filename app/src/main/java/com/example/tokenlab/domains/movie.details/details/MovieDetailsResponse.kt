@@ -1,6 +1,5 @@
 package com.example.tokenlab.domains.movie.details.details
 
-import com.example.tokenlab.domains.movie.details.belongs.to.collection.BelongsToCollection
 import com.example.tokenlab.domains.movie.details.production.company.ProductionCompanyResponse
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountryResponse
 import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguageResponse

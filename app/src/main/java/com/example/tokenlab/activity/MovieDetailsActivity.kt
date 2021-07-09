@@ -15,14 +15,13 @@ import com.example.tokenlab.adapter.GenderListAdapter
 import com.example.tokenlab.api.Api
 import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
-import com.example.tokenlab.domains.movie.Movie
-import com.example.tokenlab.domains.movie.details.belongs.to.collection.BelongsToCollection
-import com.example.tokenlab.domains.movie.details.belongs.to.collection.BelongsToCollectionResponse
 import com.example.tokenlab.domains.movie.details.details.MovieDetails
 import com.example.tokenlab.domains.movie.details.details.MovieDetailsResponse
+import com.example.tokenlab.domains.movie.details.production.company.ProductionCompany
 import com.example.tokenlab.domains.movie.details.production.company.ProductionCompanyResponse
+import com.example.tokenlab.domains.movie.details.production.country.ProductionCountry
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountryResponse
-import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguageResponse
+import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguage
 import com.example.tokenlab.extensions.createLoadingDialog
 import com.example.tokenlab.extensions.downloadImage
 import com.example.tokenlab.extensions.showErrorDialog
@@ -93,41 +92,47 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun getClickedMovieDetailsFromApiOnResponse(response: Response<MovieDetailsResponse>) {
         loadingDialog?.dismiss()
         if (response.isSuccessful && response.body() != null) {
-            val movieDetailsResponse = response.body()
-            val clickedMovieDetails = getClickedMovieDetails(movieDetailsResponse)
-            val movieDetailsGenres = getMovieDetailsGenres(movieDetailsResponse)
-            val productionCompanies = getMovieDetailsProductionCompanies(movieDetailsResponse)
-            val productionCountries = getMovieDetailsProductionCountries(movieDetailsResponse)
-            val spokenLanguages = getMovieDetailsSpokenLanguages(movieDetailsResponse)
-            val belongsToCollection = getMovieDetailsBelongsToCollection(movieDetailsResponse)
-//            showClickedMovieDetails(
-//                clickedMovieDetails,
-//                movieDetailsGenres,
-//                productionCompanies,
-//                productionCountries,
-//                spokenLanguages,
-//                belongsToCollection
-//            )
-            setVisibilityVisibleViews()
+            val clickedMovieDetailsResponse = response.body()
+            getClickedMovieDetails(clickedMovieDetailsResponse)
         } else {
             setVisibilityGoneViews()
             this@MovieDetailsActivity.showErrorDialog(getString(R.string.occurred_error))
         }
     }
 
-    private fun getMovieDetailsBelongsToCollection(movieDetailsResponse: MovieDetailsResponse?) =
-        movieDetailsResponse?.belongsToCollection?.name.orEmpty()
+    private fun getClickedMovieDetails(clickedMovieDetailsResponse: MovieDetailsResponse?) {
+        val movieDetails = getMovieDetails(clickedMovieDetailsResponse)
+        val genres = getGenres(clickedMovieDetailsResponse)
+        val productionCompanies = getProductionCompanies(clickedMovieDetailsResponse)
+        val productionCountries = getProductionCountries(clickedMovieDetailsResponse)
+        val spokenLanguages = getSpokenLanguages(clickedMovieDetailsResponse)
+        //            showClickedMovieDetails(
+        //                clickedMovieDetails,
+        //                movieDetailsGenres,
+        //                productionCompanies,
+        //                productionCountries,
+        //                spokenLanguages,
+        //                belongsToCollection
+        //            )
+        setVisibilityVisibleViews()
+    }
 
-    private fun getMovieDetailsSpokenLanguages(movieDetailsResponse: MovieDetailsResponse?) =
-        movieDetailsResponse?.spokenLanguages.orEmpty()
+    private fun getSpokenLanguages(clickedMovieDetailsResponse: MovieDetailsResponse?) =
+        clickedMovieDetailsResponse?.spokenLanguages?.map {
+            SpokenLanguage(it.name.orEmpty())
+        }
 
-    private fun getMovieDetailsProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
-        movieDetailsResponse?.productionCountries.orEmpty()
+    private fun getProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
+        movieDetailsResponse?.productionCountries?.map {
+            ProductionCountry(it.name.orEmpty())
+        } ?: emptyList()
 
-    private fun getMovieDetailsProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
-        movieDetailsResponse?.productionCompanies.orEmpty()
+    private fun getProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
+        movieDetailsResponse?.productionCompanies?.map {
+            ProductionCompany(it.name.orEmpty(), it.originCountry.orEmpty())
+        } ?: emptyList()
 
-    private fun getMovieDetailsGenres(movieDetailsResponse: MovieDetailsResponse?) =
+    private fun getGenres(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.genres.orEmpty()
 
     private fun setVisibilityVisibleViews() {
@@ -200,7 +205,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsRecyclerView?.layoutManager = layoutManager
     }
 
-    private fun getClickedMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
+    private fun getMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
         MovieDetails(
             movieDetailsResponse?.title.orEmpty(),
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
@@ -209,7 +214,8 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.imageUrl.orEmpty(),
             movieDetailsResponse?.originalLanguage.orEmpty(),
             movieDetailsResponse?.originalTitle.orEmpty(),
-            movieDetailsResponse?.tagline.orEmpty()
+            movieDetailsResponse?.tagline.orEmpty(),
+            movieDetailsResponse?.belongsToCollection?.name.orEmpty()
         )
 
     private fun retrieverClickedMovieId(): Int {
