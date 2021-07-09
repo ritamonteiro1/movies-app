@@ -106,14 +106,9 @@ class MovieDetailsActivity : AppCompatActivity() {
         val productionCompanies = getProductionCompanies(clickedMovieDetailsResponse)
         val productionCountries = getProductionCountries(clickedMovieDetailsResponse)
         val spokenLanguages = getSpokenLanguages(clickedMovieDetailsResponse)
-        //            showClickedMovieDetails(
-        //                clickedMovieDetails,
-        //                movieDetailsGenres,
-        //                productionCompanies,
-        //                productionCountries,
-        //                spokenLanguages,
-        //                belongsToCollection
-        //            )
+        showClickedMovieDetails(
+            movieDetails, genres, productionCompanies, productionCountries, spokenLanguages
+        )
         setVisibilityVisibleViews()
     }
 
@@ -187,7 +182,10 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun showClickedMovieDetails(
         clickedMovie: MovieDetails,
-        movieDetailsGenres: List<String>
+        movieDetailsGenres: List<String>,
+        productionCompanies: List<ProductionCompany>,
+        productionCountries: List<ProductionCountry>,
+        spokenLanguage: SpokenLanguage
     ) {
         movieDetailsTitleTextView?.text = clickedMovie.title
         movieDetailsVoteAverageTextView?.text = clickedMovie.voteAverage.toString()
