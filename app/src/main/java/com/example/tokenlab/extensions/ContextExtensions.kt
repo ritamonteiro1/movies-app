@@ -2,6 +2,7 @@ package com.example.tokenlab.extensions
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AlertDialog
 import com.example.tokenlab.R
 
@@ -19,6 +20,17 @@ fun Context.showErrorDialog(message: String) {
     builder.setMessage(message)
         .setCancelable(false)
         .setPositiveButton(this.getString(R.string.alert_dialog_text), null)
+    val alert = builder.create()
+    alert.show()
+}
+
+fun Context.showErrorDialogWithAction(message: String, onPositiveClick: DialogInterface.OnClickListener) {
+    val builder = AlertDialog.Builder(this)
+    builder.setMessage(message)
+        .setCancelable(false)
+        .setPositiveButton(
+            this.getString(R.string.alert_dialog_text), onPositiveClick
+        )
     val alert = builder.create()
     alert.show()
 }
