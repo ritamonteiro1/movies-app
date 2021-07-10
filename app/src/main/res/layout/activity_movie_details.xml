@@ -33,12 +33,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:contentDescription="@string/movie_details_content_description_movie_image"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitleTextView"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/movieDetailsTitleTextView"
@@ -51,12 +51,12 @@
             android:textColor="@color/grey_242"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsToolBar"
-            tools:text="Título do filme" />
+            tools:text="Título do filme"
+            tools:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/movieDetailsVoteAverageLinearLayout"
@@ -98,196 +98,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/movieDetailsDateLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsVoteAverageLinearLayout">
-
-            <TextView
-                android:id="@+id/movieDetailsReleaseDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_details_release_date_movie_text"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                tools:visibility="visible"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/movieDetailsDateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:visibility="visible"
-                android:visibility="gone"
-                tools:text="10/10/2020">
-
-            </TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/movieDetailsVoteCountLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsDateLinearLayout">
-
-            <TextView
-                android:id="@+id/movieDetailsCountTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_details_vote_count_text"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                tools:visibility="visible"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/movieDetailsVoteCountTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:visibility="visible"
-                android:visibility="gone"
-                tools:text="200">
-
-            </TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/movieDetailsOriginalLanguageLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsVoteCountLinearLayout">
-
-            <TextView
-                android:id="@+id/movieDetailsLanguageTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_details_original_language_text"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                tools:visibility="visible"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/movieDetailsOriginalLanguageTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:visibility="visible"
-                android:visibility="gone"
-                tools:text="Português">
-
-            </TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/movieDetailsOriginalTitleLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsOriginalLanguageLinearLayout">
-
-            <TextView
-                android:id="@+id/movieDetailsOriginalTitleMovieTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_details_original_title_text"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                tools:visibility="visible"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/movieDetailsOriginalTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:visibility="visible"
-                android:visibility="gone"
-                tools:text="Título original">
-
-            </TextView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/movieDetailsBelongsToCollectionLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsOriginalTitleLinearLayout">
-
-            <TextView
-                android:id="@+id/movieDetailsBelongsToCollectionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/movie_details_belongs_to_collection_text"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                tools:visibility="visible"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/movieDetailsCollectionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/grey_242"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:visibility="visible"
-                android:visibility="gone"
-                tools:text="Coleção 1">
-
-            </TextView>
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/movieDetailsGenresTextView"
             android:layout_width="0dp"
@@ -298,11 +108,11 @@
             android:text="@string/movie_details_release_gender_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsBelongsToCollectionLinearLayout" />
+            app:layout_constraintTop_toBottomOf="@id/movieDetailsRecyclerView"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/movieDetailsSpokenLanguagesTextView"
@@ -314,11 +124,11 @@
             android:text="@string/movie_details_spoken_languages_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsGenderRecyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsGenderRecyclerView"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieDetailsGenderRecyclerView"
@@ -327,13 +137,13 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsGenresTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_gender" />
+            tools:listitem="@layout/item_gender"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieDetailsSpokenLanguagesRecyclerView"
@@ -342,13 +152,13 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsSpokenLanguagesTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_spoken_language" />
+            tools:listitem="@layout/item_spoken_language"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/movieDetailsProductionCountryTextView"
@@ -360,11 +170,11 @@
             android:text="@string/movie_details_production_country_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsSpokenLanguagesRecyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsSpokenLanguagesRecyclerView"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieDetailsProductionCountryRecyclerView"
@@ -373,13 +183,13 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsProductionCountryTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_production_country" />
+            tools:listitem="@layout/item_production_country"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/movieDetailsProductionCompanyTextView"
@@ -391,11 +201,11 @@
             android:text="@string/movie_details_production_company_text"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieDetailsProductionCountryRecyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsProductionCountryRecyclerView"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movieDetailsProductionCompanyRecyclerView"
@@ -405,14 +215,29 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="20dp"
-            tools:visibility="visible"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movieDetailsProductionCompanyTextView"
             tools:itemCount="2"
-            tools:listitem="@layout/item_production_company" />
+            tools:listitem="@layout/item_production_company"
+            tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movieDetailsRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="14dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsVoteAverageLinearLayout"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_movie_details"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
