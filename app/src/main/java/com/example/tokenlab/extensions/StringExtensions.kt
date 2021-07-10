@@ -2,6 +2,7 @@
 package com.example.tokenlab.extensions
 
 import android.util.Patterns
+import com.example.tokenlab.constants.Constants
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,4 +23,10 @@ fun String.convertToValidDateFormat(): String {
 
     val dateFormat: DateFormat = SimpleDateFormat(dateFormatDayMonthYear, localeBr)
     return dateFormat.format(date)
+}
+
+fun String?.convertIfIsNullOrBlank():String{
+    return if(this.isNullOrBlank())
+        Constants.NULL_STRING_RESPONSE
+    else this
 }

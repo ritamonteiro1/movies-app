@@ -139,19 +139,19 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun mapToSpokenLanguages(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.spokenLanguages?.map {
-            SpokenLanguage(it.name ?: Constants.NULL_STRING_RESPONSE)
+            SpokenLanguage(it.name.convertIfIsNullOrBlank())
         } ?: emptyList()
 
     private fun mapToProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCountries?.map {
-            ProductionCountry(it.name ?: Constants.NULL_STRING_RESPONSE)
+            ProductionCountry(it.name.convertIfIsNullOrBlank())
         } ?: emptyList()
 
     private fun mapToProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCompanies?.map {
             ProductionCompany(
-                it.name ?: Constants.NULL_STRING_RESPONSE,
-                (if (it.originCountry.isNullOrBlank()) Constants.NULL_STRING_RESPONSE else it.originCountry),
+                it.name.convertIfIsNullOrBlank(),
+                it.originCountry.convertIfIsNullOrBlank(),
                 it.logoUrl.orEmpty()
             )
         } ?: emptyList()
@@ -260,15 +260,15 @@ class MovieDetailsActivity : AppCompatActivity() {
             else movieDetailsResponse?.tagline ?: Constants.NULL_STRING_RESPONSE
 
         return MovieDetails(
-            movieDetailsResponse?.title ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.title.convertIfIsNullOrBlank(),
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
             movieDetailsResponse?.voteCount ?: Constants.NULL_INT_RESPONSE,
-            movieDetailsResponse?.releaseDate ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.releaseDate.convertIfIsNullOrBlank(),
             movieDetailsResponse?.imageUrl.orEmpty(),
-            movieDetailsResponse?.originalLanguage ?: Constants.NULL_STRING_RESPONSE,
-            movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.originalLanguage.convertIfIsNullOrBlank(),
+            movieDetailsResponse?.originalTitle.convertIfIsNullOrBlank(),
             tagline,
-            movieDetailsResponse?.belongsToCollection?.name ?: Constants.NULL_STRING_RESPONSE
+            movieDetailsResponse?.belongsToCollection?.name.convertIfIsNullOrBlank()
         )
     }
 
