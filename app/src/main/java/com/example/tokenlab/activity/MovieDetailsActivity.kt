@@ -20,6 +20,7 @@ import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
 import com.example.tokenlab.domains.movie.details.details.MovieDetails
 import com.example.tokenlab.domains.movie.details.details.MovieDetailsResponse
+import com.example.tokenlab.domains.movie.details.movie.details.list.MovieDetailsList
 import com.example.tokenlab.domains.movie.details.production.company.ProductionCompany
 import com.example.tokenlab.domains.movie.details.production.country.ProductionCountry
 import com.example.tokenlab.domains.movie.details.spoken.language.SpokenLanguage
@@ -27,32 +28,24 @@ import com.example.tokenlab.extensions.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class MovieDetailsActivity : AppCompatActivity() {
     private var movieDetailsToolBar: Toolbar? = null
     private var movieDetailsTitleTextView: TextView? = null
-    private var movieDetailsVoteAverageTextView: TextView? = null
     private var movieDetailsImageView: ImageView? = null
-    private var movieDetailsReleaseDateTextView: TextView? = null
-    private var movieDetailsDateTextView: TextView? = null
     private var movieDetailsVoteTextView: TextView? = null
+    private var movieDetailsVoteAverageTextView: TextView? = null
+    private var movieDetailsRecyclerView: RecyclerView? = null
     private var movieDetailsGenresTextView: TextView? = null
     private var movieDetailsGenderRecyclerView: RecyclerView? = null
-    private var loadingDialog: Dialog? = null
-    private var movieDetailsCountTextView: TextView? = null
-    private var movieDetailsVoteCountTextView: TextView? = null
-    private var movieDetailsLanguageTextView: TextView? = null
-    private var movieDetailsOriginalLanguageTextView: TextView? = null
-    private var movieDetailsOriginalTitleMovieTextView: TextView? = null
-    private var movieDetailsOriginalTitleTextView: TextView? = null
-    private var movieDetailsBelongsToCollectionTextView: TextView? = null
-    private var movieDetailsCollectionTextView: TextView? = null
     private var movieDetailsSpokenLanguagesTextView: TextView? = null
     private var movieDetailsSpokenLanguagesRecyclerView: RecyclerView? = null
     private var movieDetailsProductionCountryTextView: TextView? = null
     private var movieDetailsProductionCountryRecyclerView: RecyclerView? = null
     private var movieDetailsProductionCompanyTextView: TextView? = null
     private var movieDetailsProductionCompanyRecyclerView: RecyclerView? = null
+    private var loadingDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,6 +98,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun getMovieDetails(movieDetailsResponse: MovieDetailsResponse?) {
         val movieDetails = mapToMovieDetails(movieDetailsResponse)
+        val movieDetailsList = mapToMovieDetailsList(movieDetails)
         val genres = mapToGenres(movieDetailsResponse)
         val productionCompanies = mapToProductionCompanies(movieDetailsResponse)
         val productionCountries = mapToProductionCountries(movieDetailsResponse)
@@ -115,20 +109,46 @@ class MovieDetailsActivity : AppCompatActivity() {
         setVisibilityVisibleViews()
     }
 
+    private fun mapToMovieDetailsList(movieDetails: MovieDetails): List<MovieDetailsList> {
+        return listOf(
+            MovieDetailsList(
+                getString(R.string.movie_details_release_date_movie_text),
+                movieDetails.releaseDate.convertToValidDateFormat()
+            ),
+            MovieDetailsList(
+                getString(R.string.movie_details_vote_count_text),
+                movieDetails.voteCount.toString()
+            ),
+            MovieDetailsList(
+                getString(R.string.movie_details_original_language_text),
+                movieDetails.originalLanguage
+            ),
+            MovieDetailsList(
+                getString(R.string.movie_details_original_title_text),
+                movieDetails.originalTitle
+            ),
+            MovieDetailsList(
+                getString(R.string.movie_details_belongs_to_collection_text),
+                movieDetails.belongsToCollection
+            ),
+            MovieDetailsList(getString(R.string.movie_details_tagline_text), movieDetails.tagline)
+        )
+    }
+
     private fun mapToSpokenLanguages(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.spokenLanguages?.map {
-            SpokenLanguage(it.name?:Constants.NULL_STRING_RESPONSE)
+            SpokenLanguage(it.name ?: Constants.NULL_STRING_RESPONSE)
         } ?: emptyList()
 
     private fun mapToProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCountries?.map {
-            ProductionCountry(it.name?: Constants.NULL_STRING_RESPONSE)
+            ProductionCountry(it.name ?: Constants.NULL_STRING_RESPONSE)
         } ?: emptyList()
 
     private fun mapToProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCompanies?.map {
             ProductionCompany(
-                it.name?: Constants.NULL_STRING_RESPONSE,
+                it.name ?: Constants.NULL_STRING_RESPONSE,
                 it.originCountry ?: Constants.NULL_STRING_RESPONSE,
                 it.logoUrl.orEmpty()
             )
@@ -141,50 +161,32 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsImageView?.visibility = View.VISIBLE
         movieDetailsTitleTextView?.visibility = View.VISIBLE
         movieDetailsVoteAverageTextView?.visibility = View.VISIBLE
-        movieDetailsReleaseDateTextView?.visibility = View.VISIBLE
-        movieDetailsDateTextView?.visibility = View.VISIBLE
         movieDetailsGenresTextView?.visibility = View.VISIBLE
         movieDetailsGenderRecyclerView?.visibility = View.VISIBLE
         movieDetailsVoteTextView?.visibility = View.VISIBLE
-        movieDetailsCountTextView?.visibility = View.VISIBLE
-        movieDetailsVoteCountTextView?.visibility = View.VISIBLE
-        movieDetailsLanguageTextView?.visibility = View.VISIBLE
-        movieDetailsOriginalLanguageTextView?.visibility = View.VISIBLE
-        movieDetailsOriginalTitleMovieTextView?.visibility = View.VISIBLE
-        movieDetailsOriginalTitleTextView?.visibility = View.VISIBLE
-        movieDetailsBelongsToCollectionTextView?.visibility = View.VISIBLE
-        movieDetailsCollectionTextView?.visibility = View.VISIBLE
         movieDetailsSpokenLanguagesTextView?.visibility = View.VISIBLE
         movieDetailsSpokenLanguagesRecyclerView?.visibility = View.VISIBLE
         movieDetailsProductionCountryTextView?.visibility = View.VISIBLE
         movieDetailsProductionCountryRecyclerView?.visibility = View.VISIBLE
         movieDetailsProductionCompanyTextView?.visibility = View.VISIBLE
         movieDetailsProductionCompanyRecyclerView?.visibility = View.VISIBLE
+        movieDetailsRecyclerView?.visibility = View.VISIBLE
     }
 
     private fun setVisibilityGoneViews() {
         movieDetailsImageView?.visibility = View.GONE
         movieDetailsTitleTextView?.visibility = View.GONE
         movieDetailsVoteAverageTextView?.visibility = View.GONE
-        movieDetailsReleaseDateTextView?.visibility = View.GONE
-        movieDetailsDateTextView?.visibility = View.GONE
         movieDetailsGenresTextView?.visibility = View.GONE
         movieDetailsGenderRecyclerView?.visibility = View.GONE
         movieDetailsVoteTextView?.visibility = View.GONE
-        movieDetailsCountTextView?.visibility = View.GONE
-        movieDetailsVoteCountTextView?.visibility = View.GONE
-        movieDetailsLanguageTextView?.visibility = View.GONE
-        movieDetailsOriginalLanguageTextView?.visibility = View.GONE
-        movieDetailsOriginalTitleMovieTextView?.visibility = View.GONE
-        movieDetailsOriginalTitleTextView?.visibility = View.GONE
-        movieDetailsBelongsToCollectionTextView?.visibility = View.GONE
-        movieDetailsCollectionTextView?.visibility = View.GONE
         movieDetailsSpokenLanguagesTextView?.visibility = View.GONE
         movieDetailsSpokenLanguagesRecyclerView?.visibility = View.GONE
         movieDetailsProductionCountryTextView?.visibility = View.GONE
         movieDetailsProductionCountryRecyclerView?.visibility = View.GONE
         movieDetailsProductionCompanyTextView?.visibility = View.GONE
         movieDetailsProductionCompanyRecyclerView?.visibility = View.GONE
+        movieDetailsRecyclerView?.visibility = View.GONE
     }
 
     private fun showMovieDetails(
@@ -197,14 +199,9 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsTitleTextView?.text = movieDetails.title
         movieDetailsVoteAverageTextView?.text = movieDetails.voteAverage.toString()
         movieDetailsImageView?.downloadImage(movieDetails.imageUrl)
-        movieDetailsDateTextView?.text = movieDetails.releaseDate.convertToValidDateFormat()
         val genderListAdapter = GenderListAdapter(movieDetailsGenres)
         setupGenderListAdapter(genderListAdapter)
 
-        movieDetailsVoteCountTextView?.text = movieDetails.voteCount.toString()
-        movieDetailsOriginalLanguageTextView?.text = movieDetails.originalLanguage
-        movieDetailsOriginalTitleTextView?.text = movieDetails.originalTitle
-        movieDetailsCollectionTextView?.text = movieDetails.belongsToCollection
         val spokenLanguageListAdapter = SpokenLanguageListAdapter(spokenLanguage)
         setupSpokenLanguageListAdapter(spokenLanguageListAdapter)
         val productionCompanyListAdapter = ProductionCompanyListAdapter(productionCompanies)
@@ -280,22 +277,9 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsTitleTextView = findViewById(R.id.movieDetailsTitleTextView)
         movieDetailsVoteAverageTextView = findViewById(R.id.movieDetailsVoteAverageTextView)
         movieDetailsImageView = findViewById(R.id.movieDetailsImageView)
-        movieDetailsReleaseDateTextView = findViewById(R.id.movieDetailsReleaseDateTextView)
-        movieDetailsDateTextView = findViewById(R.id.movieDetailsDateTextView)
         movieDetailsGenresTextView = findViewById(R.id.movieDetailsGenresTextView)
         movieDetailsGenderRecyclerView = findViewById(R.id.movieDetailsGenderRecyclerView)
         movieDetailsVoteTextView = findViewById(R.id.movieDetailsVoteTextView)
-        movieDetailsCountTextView = findViewById(R.id.movieDetailsCountTextView)
-        movieDetailsVoteCountTextView = findViewById(R.id.movieDetailsVoteCountTextView)
-        movieDetailsLanguageTextView = findViewById(R.id.movieDetailsLanguageTextView)
-        movieDetailsOriginalLanguageTextView =
-            findViewById(R.id.movieDetailsOriginalLanguageTextView)
-        movieDetailsOriginalTitleMovieTextView =
-            findViewById(R.id.movieDetailsOriginalTitleMovieTextView)
-        movieDetailsOriginalTitleTextView = findViewById(R.id.movieDetailsOriginalTitleTextView)
-        movieDetailsBelongsToCollectionTextView =
-            findViewById(R.id.movieDetailsBelongsToCollectionTextView)
-        movieDetailsCollectionTextView = findViewById(R.id.movieDetailsCollectionTextView)
         movieDetailsSpokenLanguagesTextView = findViewById(R.id.movieDetailsSpokenLanguagesTextView)
         movieDetailsSpokenLanguagesRecyclerView =
             findViewById(R.id.movieDetailsSpokenLanguagesRecyclerView)
