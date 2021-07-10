@@ -262,8 +262,10 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.releaseDate ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.imageUrl.orEmpty(),
             movieDetailsResponse?.originalLanguage ?: Constants.NULL_STRING_RESPONSE,
-            movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE,
-            movieDetailsResponse?.tagline ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE, (
+                    if (movieDetailsResponse?.tagline?.isBlank() == true) Constants.NULL_STRING_RESPONSE
+                    else movieDetailsResponse?.tagline
+                        ?: Constants.NULL_STRING_RESPONSE),
             movieDetailsResponse?.belongsToCollection?.name ?: Constants.NULL_STRING_RESPONSE
         )
 
