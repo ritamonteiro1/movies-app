@@ -254,20 +254,23 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsGenderRecyclerView?.layoutManager = layoutManager
     }
 
-    private fun mapToMovieDetails(movieDetailsResponse: MovieDetailsResponse?) =
-        MovieDetails(
+    private fun mapToMovieDetails(movieDetailsResponse: MovieDetailsResponse?): MovieDetails {
+        val tagline =
+            if (movieDetailsResponse?.tagline?.isBlank() == true) Constants.NULL_STRING_RESPONSE
+            else movieDetailsResponse?.tagline ?: Constants.NULL_STRING_RESPONSE
+
+        return MovieDetails(
             movieDetailsResponse?.title ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
             movieDetailsResponse?.voteCount ?: Constants.NULL_INT_RESPONSE,
             movieDetailsResponse?.releaseDate ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.imageUrl.orEmpty(),
             movieDetailsResponse?.originalLanguage ?: Constants.NULL_STRING_RESPONSE,
-            movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE, (
-                    if (movieDetailsResponse?.tagline?.isBlank() == true) Constants.NULL_STRING_RESPONSE
-                    else movieDetailsResponse?.tagline
-                        ?: Constants.NULL_STRING_RESPONSE),
+            movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE,
+            tagline,
             movieDetailsResponse?.belongsToCollection?.name ?: Constants.NULL_STRING_RESPONSE
         )
+    }
 
     private fun retrieverMovieId(): Int {
         return intent.getSerializableExtra(Constants.ID_MOVIE) as Int
