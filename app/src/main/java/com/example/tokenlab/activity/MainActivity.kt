@@ -115,9 +115,9 @@ class MainActivity : AppCompatActivity() {
             Movie(
                 it.id ?: Constants.NULL_INT_RESPONSE,
                 it.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
-                it.title.orEmpty(),
+                it.title?:Constants.NULL_STRING_RESPONSE,
                 it.imageUrl.orEmpty(),
-                it.releaseDate.orEmpty()
+                it.releaseDate?:Constants.NULL_STRING_RESPONSE,
             )
         } ?: emptyList()
 
