@@ -36,7 +36,7 @@ class SpokenLanguageListAdapter(private val spokenLanguageList: List<SpokenLangu
     }
 
     inner class SpokenListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var itemSpokenLanguageTextView: TextView =
+        private val itemSpokenLanguageTextView: TextView =
             itemView.findViewById(R.id.itemSpokenLanguageTextView)
 
         fun bind(spokenLanguage: SpokenLanguage) {
