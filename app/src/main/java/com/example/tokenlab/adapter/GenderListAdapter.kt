@@ -32,7 +32,7 @@ class GenderListAdapter(private val genderList: List<String>) :
     }
 
     inner class GenderListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var itemGenderChip: Chip = itemView.findViewById(R.id.itemGenderChip)
+        private val itemGenderChip: Chip = itemView.findViewById(R.id.itemGenderChip)
 
         fun bind(genderList: String) {
             itemGenderChip.text = genderList
