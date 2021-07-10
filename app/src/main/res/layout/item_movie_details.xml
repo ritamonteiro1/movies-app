@@ -24,16 +24,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/grey_242"
             android:textSize="16sp"
-            tools:text="Tipo da informação" />
-
-        <TextView
-
-            android:id="@+id/itemMovieDetailsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_242"
-            android:textSize="16sp"
-            tools:text=":" />
+            tools:text="Tipo da informação:" />
 
         <TextView
             android:id="@+id/itemMovieDetailsValueTextView"
