@@ -122,7 +122,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun mapToProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCountries?.map {
-            ProductionCountry(it.name.orEmpty())
+            ProductionCountry(it.name?: Constants.NULL_STRING_RESPONSE)
         } ?: emptyList()
 
     private fun mapToProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
