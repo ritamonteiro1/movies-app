@@ -127,7 +127,11 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun mapToProductionCompanies(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.productionCompanies?.map {
-            ProductionCompany(it.name.orEmpty(), it.originCountry.orEmpty(), it.logoUrl.orEmpty())
+            ProductionCompany(
+                it.name?: Constants.NULL_STRING_RESPONSE,
+                it.originCountry ?: Constants.NULL_STRING_RESPONSE,
+                it.logoUrl.orEmpty()
+            )
         } ?: emptyList()
 
     private fun mapToGenres(movieDetailsResponse: MovieDetailsResponse?) =
