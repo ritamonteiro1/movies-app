@@ -151,7 +151,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsResponse?.productionCompanies?.map {
             ProductionCompany(
                 it.name ?: Constants.NULL_STRING_RESPONSE,
-                it.originCountry ?: Constants.NULL_STRING_RESPONSE,
+                (if (it.originCountry.isNullOrBlank()) Constants.NULL_STRING_RESPONSE else it.originCountry),
                 it.logoUrl.orEmpty()
             )
         } ?: emptyList()
