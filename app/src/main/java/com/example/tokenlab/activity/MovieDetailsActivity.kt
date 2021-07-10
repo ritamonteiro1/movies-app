@@ -255,10 +255,6 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun mapToMovieDetails(movieDetailsResponse: MovieDetailsResponse?): MovieDetails {
-        val tagline =
-            if (movieDetailsResponse?.tagline?.isBlank() == true) Constants.NULL_STRING_RESPONSE
-            else movieDetailsResponse?.tagline ?: Constants.NULL_STRING_RESPONSE
-
         return MovieDetails(
             movieDetailsResponse?.title.convertIfIsNullOrBlank(),
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
@@ -267,7 +263,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.imageUrl.orEmpty(),
             movieDetailsResponse?.originalLanguage.convertIfIsNullOrBlank(),
             movieDetailsResponse?.originalTitle.convertIfIsNullOrBlank(),
-            tagline,
+            movieDetailsResponse?.tagline.convertIfIsNullOrBlank(),
             movieDetailsResponse?.belongsToCollection?.name.convertIfIsNullOrBlank()
         )
     }

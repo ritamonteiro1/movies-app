@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 it.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
                 it.title?:Constants.NULL_STRING_RESPONSE,
                 it.imageUrl.orEmpty(),
-                it.releaseDate?:Constants.NULL_STRING_RESPONSE,
+                it.releaseDate.orEmpty(),
             )
         } ?: emptyList()
 
