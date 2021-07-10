@@ -117,7 +117,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun mapToSpokenLanguages(movieDetailsResponse: MovieDetailsResponse?) =
         movieDetailsResponse?.spokenLanguages?.map {
-            SpokenLanguage(it.name.orEmpty())
+            SpokenLanguage(it.name?:Constants.NULL_STRING_RESPONSE)
         } ?: emptyList()
 
     private fun mapToProductionCountries(movieDetailsResponse: MovieDetailsResponse?) =
