@@ -11,10 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokenlab.R
-import com.example.tokenlab.adapter.GenderListAdapter
-import com.example.tokenlab.adapter.ProductionCompanyListAdapter
-import com.example.tokenlab.adapter.ProductionCountryListAdapter
-import com.example.tokenlab.adapter.SpokenLanguageListAdapter
+import com.example.tokenlab.adapter.*
 import com.example.tokenlab.api.Api
 import com.example.tokenlab.api.DataService
 import com.example.tokenlab.constants.Constants
@@ -104,7 +101,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         val productionCountries = mapToProductionCountries(movieDetailsResponse)
         val spokenLanguages = mapToSpokenLanguages(movieDetailsResponse)
         showMovieDetails(
-            movieDetails, genres, productionCompanies, productionCountries, spokenLanguages
+            movieDetails,
+            movieDetailsList,
+            genres,
+            productionCompanies,
+            productionCountries,
+            spokenLanguages
         )
         setVisibilityVisibleViews()
     }
@@ -191,6 +193,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     private fun showMovieDetails(
         movieDetails: MovieDetails,
+        movieDetailsList: List<MovieDetailsList>,
         movieDetailsGenres: List<String>,
         productionCompanies: List<ProductionCompany>,
         productionCountries: List<ProductionCountry>,
@@ -199,15 +202,24 @@ class MovieDetailsActivity : AppCompatActivity() {
         movieDetailsTitleTextView?.text = movieDetails.title
         movieDetailsVoteAverageTextView?.text = movieDetails.voteAverage.toString()
         movieDetailsImageView?.downloadImage(movieDetails.imageUrl)
+        val movieDetailsListAdapter = MovieDetailsListAdapter(movieDetailsList)
+        setupMovieDetailsListAdapter(movieDetailsListAdapter)
         val genderListAdapter = GenderListAdapter(movieDetailsGenres)
         setupGenderListAdapter(genderListAdapter)
-
         val spokenLanguageListAdapter = SpokenLanguageListAdapter(spokenLanguage)
         setupSpokenLanguageListAdapter(spokenLanguageListAdapter)
         val productionCompanyListAdapter = ProductionCompanyListAdapter(productionCompanies)
         setupProductionCompanyListAdapter(productionCompanyListAdapter)
         val productionCountryListAdapter = ProductionCountryListAdapter(productionCountries)
         setupProductionCountryListAdapter(productionCountryListAdapter)
+    }
+
+    private fun setupMovieDetailsListAdapter(movieDetailsListAdapter: MovieDetailsListAdapter) {
+        movieDetailsRecyclerView?.adapter = movieDetailsListAdapter
+        val layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
+        movieDetailsRecyclerView?.layoutManager = layoutManager
     }
 
     private fun setupProductionCountryListAdapter(productionCountryListAdapter: ProductionCountryListAdapter) {
@@ -291,5 +303,6 @@ class MovieDetailsActivity : AppCompatActivity() {
             findViewById(R.id.movieDetailsProductionCompanyTextView)
         movieDetailsProductionCompanyRecyclerView =
             findViewById(R.id.movieDetailsProductionCompanyRecyclerView)
+        movieDetailsRecyclerView = findViewById(R.id.movieDetailsRecyclerView)
     }
 }
