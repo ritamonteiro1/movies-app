@@ -247,7 +247,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
             movieDetailsResponse?.voteCount ?: Constants.NULL_INT_RESPONSE,
             movieDetailsResponse?.releaseDate ?: Constants.NULL_STRING_RESPONSE,
-            movieDetailsResponse?.imageUrl ?: Constants.NULL_STRING_RESPONSE,
+            movieDetailsResponse?.imageUrl.orEmpty(),
             movieDetailsResponse?.originalLanguage ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.originalTitle ?: Constants.NULL_STRING_RESPONSE,
             movieDetailsResponse?.tagline ?: Constants.NULL_STRING_RESPONSE,
