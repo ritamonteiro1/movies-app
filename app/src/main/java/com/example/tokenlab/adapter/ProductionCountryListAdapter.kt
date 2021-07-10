@@ -36,7 +36,7 @@ class ProductionCountryListAdapter(private val productionCountryList: List<Produ
     }
 
     inner class ProductionCountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var itemProductionCountryTextView: TextView =
+        private val itemProductionCountryTextView: TextView =
             itemView.findViewById(R.id.itemProductionCountryTextView)
 
         fun bind(productionCountry: ProductionCountry) {
