@@ -263,7 +263,7 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailsResponse?.title.convertIfIsNullOrBlank(),
             movieDetailsResponse?.voteAverage ?: Constants.NULL_DOUBLE_RESPONSE,
             movieDetailsResponse?.voteCount ?: Constants.NULL_INT_RESPONSE,
-            movieDetailsResponse?.releaseDate.convertIfIsNullOrBlank(),
+            movieDetailsResponse?.releaseDate.orEmpty(),
             movieDetailsResponse?.imageUrl.orEmpty(),
             movieDetailsResponse?.originalLanguage.convertIfIsNullOrBlank(),
             movieDetailsResponse?.originalTitle.convertIfIsNullOrBlank(),
